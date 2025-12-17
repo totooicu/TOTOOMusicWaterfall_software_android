@@ -163,6 +163,12 @@
 
           <a-tab-pane tab="知识图谱" key="knowledgeGraph">
             
+            <KnowledgeGraph
+              :data="knowledgeGraphData"
+              :width="'100%'"
+              :height="500"
+              :loading="loadingRSS"
+            />
           </a-tab-pane>
         </a-tabs>
       </div>
@@ -181,6 +187,7 @@ import { message, Spin, Statistic, Tabs, List, Tag, Descriptions, Result } from 
 import { summaryAPI, rssAPI } from '../services/apiService'
 import MarkdownRenderer from '../components/MarkdownRenderer.vue'
 import WordCloud from '../components/WordCloud.vue'
+import KnowledgeGraph from './KnowledgeGraphPage.vue'
 export default {
   name: 'SummaryPage',
   components: {
@@ -192,7 +199,8 @@ export default {
     [Descriptions.name]: Descriptions,
     [Result.name]: Result,
     MarkdownRenderer,
-    WordCloud
+    WordCloud,
+    KnowledgeGraph
   },
   setup() {
     // 状态管理

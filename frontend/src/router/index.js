@@ -15,16 +15,8 @@ const routes = [
     name: 'Config',
     component: ConfigPage
   },
-  {
-    path: '/qa',
-    name: 'QA',
-    component: QAPage
-  },
-  {
-    path: '/knowledge-graph',
-    name: 'KnowledgeGraph',
-    component: KnowledgeGraphPage
-  }
+
+
 ]
 
 const router = createRouter({

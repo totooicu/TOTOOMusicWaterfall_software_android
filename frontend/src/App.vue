@@ -9,12 +9,6 @@
         <a-menu-item key="2">
           <router-link to="/config">系统配置</router-link>
         </a-menu-item>
-        <a-menu-item key="3">
-          <router-link to="/qa">论文问答</router-link>
-        </a-menu-item>
-        <a-menu-item key="4">
-          <router-link to="/knowledge-graph">知识图谱</router-link>
-        </a-menu-item>
       </a-menu>
     </a-layout-header>
     <a-layout-content class="content">
