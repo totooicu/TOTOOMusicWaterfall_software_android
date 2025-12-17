@@ -1,0 +1,862 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<rss version="2.0">
+	<channel>
+		<title><![CDATA[ IEEE Transactions on Geoscience and Remote Sensing - new TOC ]]></title>
+		<link>http://ieeexplore.ieee.org</link>
+		<description>TOC Alert for Publication# 36 </description>
+		<year>2025</year>
+		<month>November</month>
+		<day>24</day>
+		<pubDate><![CDATA[MON, 08 SEP 2025 00:00:00 -0400]]></pubDate>
+		<item>
+			<title><![CDATA[MTGAN-KAN: A New Physics-Driven Wasserstein Generative Adversarial Kolmogorov–Arnold Network for 2-D Magnetotelluric Inversion]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11242180]]></link>
+			<description><![CDATA[The conventional magnetotelluric (MT) inversions rely primarily on L2 norm to quantify the misfit between the observed data and the predicted ones. However, it often suffers from issues of unreasonable weighting of inversion data, sensitivity to outliers, and poor resolution to weak anomalies. To address these limitations and achieve better data fitting across varying scales, we propose to replace the L2 norm with the Wasserstein distance to measure the distributional discrepancy between the predicted and observed data. This method adopts the Wasserstein generative adversarial network (WGAN) framework and uses the Kolmogorov–Arnold network (KAN) as the discriminator to implement the Wasserstein metric. By substituting the neural generator in WGAN with a physics-based forward modeling, we achieve a purely physics-driven iterative process that is similar to the conventional MT inversion workflows to ensure adequate data fitting. Numerical experiments on synthetic models demonstrate that MTGAN-KAN can better fit data distributions and yield higher-resolution inversion results than the conventional methods. Compared to WGAN, which employs a fully connected neural network (FCNN) as the discriminator, the incorporation of KAN can significantly improve the convergence and stability of MTGAN. An inversion test using MT data from Newer Volcanic Province in Australia further highlights the superior characteristics of data fitting and resolution of MTGAN-KAN in the inversion of MT data.]]></description>
+			<pubDate><![CDATA[WED, 14 DEC 2025 09:16:24 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11242180]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>17975</fileSize>
+			<authors><![CDATA[Fuying Yang;Yunhe Liu;Changchun Yin;Yang Su;Zhiyuan Ke;Xinpeng Ma;Zhihao Rong;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[An Algorithm for Aerosol Optical Properties Retrieval Over the Ocean Accelerated by a Neural Network From Single-View Multispectral Measurements of Intensity and Polarization]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11231349]]></link>
+			<description><![CDATA[Monitoring aerosols over the oceans is critical for understanding Earth’s climate and air quality. Although polarization can substantially reduce uncertainty in aerosol retrievals, current algorithms rely mainly on multiview polarimeters, and no dedicated algorithm is available for single-view polarimeters over the ocean. Here, we present the first ocean algorithm for a spaceborne single-view polarimeter, demonstrated with the particulate observing scanning polarimeter (POSP) onboard the GF-5(02) satellite. Our algorithm combines multispectral polarization with machine learning (ML)-accelerated radiative transfer (RT) calculation and seasonally clustered global aerosol models. Validation with Aerosol Robotic Network (AERONET) and maritime aerosol network (MAN) data demonstrates high accuracy, with RMSEs of 0.061, 0.479, and 0.037 for AOD550, aerosol loading (AE) ${}_{\mathrm {670-870}}$ , and SSA550 using AERONET, and 0.030 and 0.259 for AOD550 and AE ${}_{\mathrm {670-870}}$  using MAN, respectively. Comparison with retrievals from the generalized retrieval of atmosphere and surface properties (GRASPs) algorithm confirms that our algorithm performs comparably to GRASP products. These results underscore the necessity and feasibility of developing specialized aerosol retrieval algorithms for single-view polarimeters, and pave the way for global aerosol over the ocean monitoring.]]></description>
+			<pubDate><![CDATA[FRI, 14 DEC 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11231349]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>14</endPage>
+			<fileSize>4764</fileSize>
+			<authors><![CDATA[Zhe Ji;Zhengqiang Li;Cheng Fan;Cheng Chen;Zhenwei Qiu;Zhenhai Liu;Haoran Gu;Qian Yao;Gerrit de Leeuw;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A 3-D Mesoscopic Modeling for Polarized Radiative Transfer: Application to Remote Sensing of Atmospheric Systems]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11224867]]></link>
+			<description><![CDATA[The 3-D polarized radiative transfer becomes increasingly important for remote sensing applications. In this study, we propose a 3-D mesoscopic modeling for polarized radiative transfer in atmospheric systems based on the lattice Boltzmann method (LBM). To accurately capture the complex geometries of 3-D inhomogeneous atmospheres, the proposed LB model is constructed on unstructured grids. The accuracy of the proposed unstructured LB model is validated through comparison with benchmark solutions. Furthermore, this study employs the proposed unstructured LB model to investigate the influence of different infrared incident wavelengths and atmospheric characteristics on polarized radiative transfer. The results demonstrate that the unstructured LB model accurately captures the wavelength-dependent variations of the Stokes parameters in both forward and backward scattering processes, highlighting its exceptional capability in handling complex atmospheric structures and multiple optical components that influence polarized light. This model provides a 3-D mesoscopic tool for remote sensing, particularly for interpreting polarized signals from inhomogeneous atmospheric systems.]]></description>
+			<pubDate><![CDATA[TUE, 14 DEC 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11224867]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>14</endPage>
+			<fileSize>3725</fileSize>
+			<authors><![CDATA[Mingqi Liu;Xiaochuan Liu;Yijie Wei;Yong Huang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Precipitation Nowcasting Diffusion Model Based on Fluid Dynamics and Multisource Data]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11237162]]></link>
+			<description><![CDATA[Precipitation nowcasting is a long-standing challenge due to the inherent unpredictability, which often leads to significant risks and damage. Traditional approaches that model nonlinear relationships between initial and future precipitation states often fail to accurately capture precipitation dynamics, including distribution and intensity patterns. Current data-driven methods are limited in their ability to represent the chaotic nature of precipitation without guidance from physical theory. To address this, we present Rainfusion, a generative model that integrates Prandtl’s mixing length theory from fluid dynamics with computer vision diffusion models. This integration accounts for nonlinear interactions between large-scale evolution and turbulent fluctuations in precipitation, generating physically plausible predictions. Rainfusion significantly improves forecasting skill on two benchmark datasets over the next 3 h. Furthermore, we enhance Rainfusion with a control network trained on multisource data, particularly lightning observations, enabling more accurate and controllable predictions of precipitation’s spatial–temporal patterns. Weather forecasters can utilize Rainfusion to guide predictions toward either growth or decay based on their domain expertise. Our approach advances precipitation nowcasting, offering a robust framework that bridges physical theory with modern deep learning techniques.]]></description>
+			<pubDate><![CDATA[MON, 14 DEC 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11237162]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>24</endPage>
+			<fileSize>12206</fileSize>
+			<authors><![CDATA[Dawei Li;Kefeng Deng;Di Zhang;Hongze Leng;Yudi Liu;Kaijun Ren;Junqiang Song;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Heterogeneous Spatiotemporal Graph Learning for Localized Sparse Meteorological Forecasting]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11225898]]></link>
+			<description><![CDATA[Localized meteorological forecasting holds significant practical value for human socio-economic activities. Current deep learning-based localized meteorological prediction methods trained with structured reanalysis data have made great progress. However, the assimilation process from observational data to reanalysis data may introduce uncertainty errors. Meanwhile, the inherent sparsity and unstructured nature of observational data fail to reflect localized sparse meteorological conditions accurately. Therefore, these methods struggle to deliver precise localized meteorological forecasts. To address these issues, we propose a heterogeneous spatiotemporal graph neural network (HSTGNN) that integrates observational and reanalysis data for in situ prediction of meteorological variables at localized sparse stations. Specifically, we first design a hybrid graph constructor (HGC) to map sparse observational data and reanalysis data into heterogeneous nodes, establishing node association topologies through a dual-channel mechanism combining geographical graphs and adaptive learning graphs. We then develop a hierarchical heterogeneous message passing module (H2MPM) to facilitate differentiated information interaction between heterogeneous data, effectively capturing spatial dependencies across data sources. Finally, we introduce a temporal linear unit based on single-layer linear regression to extract temporal dependencies and perform sequence prediction of meteorological variables at each station. Experimental results on two datasets demonstrate that HSTGNN comprehensively models localized meteorological patterns and achieves outstanding performance in in situ meteorological variables prediction tasks.]]></description>
+			<pubDate><![CDATA[TUE, 14 DEC 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11225898]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>18</endPage>
+			<fileSize>43250</fileSize>
+			<authors><![CDATA[Sheng Li;Qian Li;Zhencai Du;Zeming Zhou;Min Wang;Liang Zhang;Wei Li;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Automated Tropical Cyclone Intensity Estimation Through Integration of Historical Information and Self-Diagnosis Using AI Models]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11245625]]></link>
+			<description><![CDATA[Recently, various artificial intelligence (AI)-based techniques have been developed to estimate tropical cyclone (TC) intensity by analyzing patterns in satellite imagery. Most of these models rely solely on currently available satellite data. However, traditional methods used in operational TC forecasting, such as the advanced Dvorak technique (ADT), as well as forecasters’ practices in TC intensity estimation, consider not only the current information but also historical data (e.g., previous TC intensities and their trends). Additionally, forecasters compare TC intensity from ADT and analysis track data, and if a bias is identified, they take this into account when estimating the current TC intensity. This study investigates how much the performance of current AI-based TC intensity estimation can be improved by incorporating historical information and bias estimates. Three experiments were conducted: 1) control (CTRL), which uses only current satellite images; 2) experiment 1 (Exp 1), which includes current data along with satellite imagery and intensity from 6 h earlier; and 3) experiment 2 (Exp 2), which further incorporates bias estimates from the past 18 h into a self-diagnosis algorithm. The results showed that Exp 1 reduced intensity estimation errors by 64.7% compared to CTRL, while Exp 2 further decreased errors by 32.3% compared to Exp 1. This suggests that using historical TC information and a self-diagnosis approach in operational systems is crucial for improving the accuracy of AI-based TC intensity estimation.]]></description>
+			<pubDate><![CDATA[THU, 13 NOV 2025 09:16:33 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11245625]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>12</endPage>
+			<fileSize>24721</fileSize>
+			<authors><![CDATA[Hyeyoon Jung;Il-Ju Moon;Dong-Hoon Kim;Juhyun Lee;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[The Downscaling Prediction Algorithm of Traffic Source Carbon Emissions Based on Multisource Remote Sensing Data and Deep Learning]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11224875]]></link>
+			<description><![CDATA[A downscaling prediction method for traffic source carbon emissions is proposed, which leverages multisource remote sensing data and deep learning techniques to enhance the spatial resolution of emission estimates. A novel deep learning model, Dilated-convolutional block attention module Dilated-(CBAM), which integrates dilated convolution and the CBAM, is developed. This model leverages data on XCO2, NO2, CO concentrations, aerosol optical depth (AOD), and nighttime light intensity to refine and predict the 0.1° resolution Emissions Database for Global Atmospheric Research (EDGAR) dataset, thereby generating a high-resolution traffic source carbon emissions dataset for Beijing, referred to as HTE-Beijing. The HTE-Beijing dataset delivers monthly road-traffic emissions through 2023 at 0.01° resolution, substantially enhancing the accuracy and timeliness of emission predictions. Feature importance analysis indicates that XCO2 and NO2 are the dominant factors influencing the downscaling prediction of carbon emissions across various road types, particularly on highways and urban roads. In the downscaling decomposition experiment conducted on the 2022 test data, the Dilated-CBAM model demonstrates excellent performance, achieving an  $R ^{2}$  value of 0.974, a root mean squared error (RMSE) of 747.75 ton (t), and a mean absolute error (MAE) of 302.52 t. Compared with the EDGAR inventory, the HTE-Beijing dataset offers more accurate carbon emission predictions. It can finely differentiate carbon emission variations among different road types in traffic-dense areas. Furthermore, the HTE-Beijing dataset exhibits a strong correlation with actual observations, with an  $R$  value of 0.845. Among all road types, highways exhibit the highest carbon emissions per kilometer, accounting for over 20% of the total emissions across all road types.]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11224875]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>18</endPage>
+			<fileSize>17578</fileSize>
+			<authors><![CDATA[Liang Zheng;Shenshen Li;Xuefei Hu;Kun Cai;Yang Liu;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Sensitivity of Microwave Radiative Transfer Simulations to Cloud Microphysics Assumptions]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11244145]]></link>
+			<description><![CDATA[This study investigates the sensitivity of radiative transfer (RT) simulations to cloud microphysics (MP) assumptions. Experimental RT simulations were used to investigate the impact of various particle size distribution (PSD) and density assumptions for both rainwater and frozen hydrometeors incorporated into the scattering module of RT models (RTMs). Input atmospheric fields from weather research and forecasting (WRF) model simulations with the Predicted Particle Properties single free-ice category (P31ICE) scheme were held fixed. A plane-parallel, fast RTM with the delta-Eddington approximation was employed to simulate brightness temperatures (TBs) from the global precipitation measurement mission microwave imager (GMI) for five typhoon scenes. Rainwater PSD assumptions had a relatively low impact on radiative signatures due to compensating extinction from small and large particles and the offset between emission and scattering. For frozen hydrometeors, the impacts of PSD assumptions were mitigated by particle-size-dependent scattering compensation and the canceling effect of forward scattering. Density assumptions had the largest impact on radiative signatures. In addition, sensitivity to variations in atmospheric fields was observed in physically consistent reference RT simulations using WRF outputs with six different MP schemes. Interactions between MP assumptions in the RTM scattering module and those in the WRF model either amplified or suppressed TB responses, underscoring the importance of physical consistency across the RT framework. Comparisons with GMI observations reinforced the need to reconcile both physical realism and consistency throughout RT simulations. These findings provide guidance for improving the application of RTMs in all-sky data assimilation and satellite-based cloud-property retrievals.]]></description>
+			<pubDate><![CDATA[WED, 12 NOV 2025 09:16:24 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11244145]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>21</endPage>
+			<fileSize>2961</fileSize>
+			<authors><![CDATA[Donghyeck Kim;Dong-Bin Shin;Jiseob Kim;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[The Regional Sea Surface Temperature Analysis With Ultrahigh Resolution Produced by a Deep Learning-Driven Variational Scheme]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11230629]]></link>
+			<description><![CDATA[Several merged sea surface temperature (SST) datasets have been produced using different analysis schemes. In high-resolution SST analysis—whether based on optimal interpolation (OI) or variational methods—the background fields and design of background error covariance directly affect the accuracy and feature resolution of the analysis results. Unlike traditional approaches that generate these background parameters from either SST climatological data or previous-cycle analysis data, we propose a deep learning-driven variational analysis scheme to produce the regional SST at a 0.01° grid resolution. The scheme employs a deep learning-based SST prediction model combined with a background error estimation algorithm, generating high-quality background fields in real time. In addition, a dynamic background error covariance enhances the representation of submesoscale features in regions of high SST variability. This approach strengthens spatiotemporal correlations in SST observational data, enabling reliable background field reconstruction even in areas with multiday observation gaps. Validation against drifting buoy and Argo data shows the analyzed SST has a root-mean-squared error (RMSE) of  $0.41~^{\circ }$ C. Spectral analysis further confirms that mesoscale and submesoscale sea surface thermal features can be detected by the analyzed SST field, with improved feature resolution at scales of tens to several kilometers in the Kuroshio region.]]></description>
+			<pubDate><![CDATA[THU, 06 NOV 2025 09:17:05 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11230629]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>10</endPage>
+			<fileSize>2777</fileSize>
+			<authors><![CDATA[Li Wei;Lei Guan;Runtai Zou;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Unreasonable Agricultural Engineering Accelerates Exhaustion of Water Resources in Arid Basins of Northwest China Under Global Warming]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11242217]]></link>
+			<description><![CDATA[The intense water surface evaporation (ET) in arid regions leads to significant water resource losses, enlarging the supply-demand gap and increasing ecological pressures. The land surface temperature in China has increased significantly during the past several decades with global warming and the water surface ET has enhanced accordingly. In addition, human activities-induced land use/coverage change (LUCC) often accelerates surface water losses, especially in vulnerable arid/semi-arid regions. However, integrated researches considering climate change and human activities, especially agricultural engineering constructions in arid/semi-arid inland basins are relatively scarce. In this study, we have chosen a very typical arid inland basin, the Shiyang River Basin (SRB) with prominent global warming and intensive human activities as a case study, to monitor the water surface ET changes under global warming and human activities. We combined remote sensing extraction on Google Earth Engine (GEE) and ET modeling to estimate the water surface ET losses during the ice-free period in the SRB from 2010 to 2023. The results showed an accelerated increasing trend in water surface ET volume from  $52.19\times 10^{6}$  m3 in 2010- $62.16\times 10^{6}$  m3 in 2023 with a rate of  $0.9163\times 10^{6}$  m3/year because of the significant enlarges in farmland reservoir areas. For maintaining the minimum water depth requirements in these artificial reservoirs all over the year, groundwater has to be continuously piped into these reservoirs. With the emergence of these farmland reservoirs, the groundwater table depth (GTD) in the whole SRB has increased dramatically. The plants’ roots cannot reach the groundwater table anymore and gradually to die from lack of water and has aroused serious ecological disasters. It is predicted that the water exhaustion in the SRB will further intensify in the future. These findings emphasized the influences of unreasonable agricultural engineering in these arid oases and provided an important reference for water resources management and decision-making in similar arid areas of the world for the sustainable development goals (SDGs).]]></description>
+			<pubDate><![CDATA[WED, 12 NOV 2025 09:16:24 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11242217]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>12373</fileSize>
+			<authors><![CDATA[Yanqiang Wei;Xuejie Tang;Dongliang Luo;Zihao Wu;Bo Xu;Xufeng Wang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Snow Depth Estimation Based on STCTNet for Sentinel-1 and Multisource Data]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11227141]]></link>
+			<description><![CDATA[Snow is a core part of the cryosphere that plays an important role in climate regulation, hydrological cycles, and ecosystems. Therefore, deriving long-term and large-scale snow depth (SD) time series and monitoring their spatial and temporal variations are crucial. The high-resolution, all-weather synthetic aperture radar (SAR) imagery provided by Sentinel-1 offers an important data source for monitoring SD. This study proposes a deep learning network called spatiotemporal CNN–Transformer net (STCTNet), which combines the multichannel characteristics of convolutional neural networks with the attention mechanism of Transformer to enhance the model’s ability to comprehensively process local and global features. The spatiotemporal distribution characteristics of SD stations are also considered to construct a spatiotemporally weighted SD variable. This model was trained using data obtained from Colorado between 2017 and 2019, and the results show that this model achieves an RMSE of 4.828 cm, an MAE of 2.398 cm, and  $R^{2}$  of 0.909. The trained model was then used to predict the average SD for February from 2017 to 2022 at a spatial resolution of 20 m. STCTNet obtained the overall RMSE and MAE values of 8.7 and 4.6 cm, respectively, which show lower RMSE and MAE compared with those of Advanced Microwave Scanning Radiometer 2 (AMSR2) (17.9 and 10 cm) and ERA5-Land datasets (18.5 and 13.1 cm). An analysis of SD changes from 2017 to 2022 shows that SD may be affected by a variety of climatic anomalies. The application of active microwave data and deep learning techniques in this study provides an approach that improves both the spatial resolution and estimation accuracy of SD.]]></description>
+			<pubDate><![CDATA[WED, 05 NOV 2025 09:17:13 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11227141]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>4151</fileSize>
+			<authors><![CDATA[Qing Cheng;Xinchen Xu;Linwei Yue;Weifeng Hao;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Multiscale Integration of Spatially Dense InSAR Data and Temporally Intensive GNSS Data Enhances Landslide Displacement Prediction]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11227123]]></link>
+			<description><![CDATA[Landslides pose significant threats to human life, property, and critical infrastructure. Due to complex landslide dynamics and the lack of high-quality monitoring data, the timely and accurate prediction of landslide displacement remains challenging. This study proposes a deep learning (DL) model to predict landslide displacement by integrating multiscale interferometric synthetic aperture radar (InSAR) and global navigation satellite system (GNSS) monitoring data. The InSAR technique provides high-density surface measurements of the landslide, while the GNSS technique captures high-precision and real-time landslide dynamics. We first extract temporal features from high-frequency GNSS data and build a heterogeneous spatial network to represent the topological relationship between the multiscale datasets. Two alternative strategies are developed to fuse GNSS and InSAR data by updating node features (attribute augmented model) or reshaping graph edge relationships (graph topological model). Then, a DL model composed of graph convolutional networks (GCNs) and gated recurrent units (GRUs) leverages the integrated global information to deliver high-precision landslide displacement prediction. Experimental results show that the proposed model achieves an MAE of 0.014 and the mean absolute percentage error (MAPE) of 7.8%, outperforming single-source models and accurately simulating displacement fluctuation signals of the landslide. The graph topological model excels with stable, strongly correlated monitoring data, while the attribute augmented model remains robust under weaker or fluctuating monitoring correlations. These findings underscore the necessity and feasibility of multisource monitoring data in landslide displacement prediction, providing a robust and scalable framework for landslide disaster prevention.]]></description>
+			<pubDate><![CDATA[WED, 05 NOV 2025 09:17:13 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11227123]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>19</endPage>
+			<fileSize>4898</fileSize>
+			<authors><![CDATA[Qianru Ding;Gang Ma;Chengqian Guo;Hua Chen;Fudong Chi;Wei Zhou;Xiaolin Chang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[SCAD-Net: A Semi-Supervised Connectivity-Aware Decoupling Network for High-Resolution Remote Sensing Image Change Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236501]]></link>
+			<description><![CDATA[Semi-Supervised change detection (SSCD) in remote sensing faces two critical challenges: cyclical error propagation from noisy pseudolabels and the loss of fine-grained boundary details. To address these, we propose a novel SSCD framework, the semi-supervised connectivity-aware decoupling network (SCAD-Net). SCAD-Net breaks the cycle of error amplification with a strategy called pixelsregions via curriculum-guided consistency learning (P2R-CL). This strategy progresses from initial, high-confidence pixel-level supervision to more flexible, region-based semantic correction as training matures. To tackle boundary ambiguity, SCAD-Net employs a two-stage decoupling architecture: a channel information decoupling module (CIDM) separates categorical and directional features, followed by a multiscale attention and feature integration (MAFI) module that reintegrates this information for precise boundary localization. Experiments on four benchmark datasets demonstrate our method’s superiority. On the Shanghai Dataset (SHD), using only 10% labeled data, SCAD-Net achieves an F1-score of 90.1%, representing a 3.88% improvement over state-of-the-art methods. Similarly, strong performance is observed on the LEVIR-CD (90.31% F1), WHU-CD (89.35% F1), and CDD (87.05% F1) datasets. This feature decoupling paradigm offers a robust approach for semi-supervised remote sensing in environments.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236501]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>17</endPage>
+			<fileSize>3595</fileSize>
+			<authors><![CDATA[Yuling Zhou;Kun Tan;Xue Wang;Wen Zhang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Sensitivity Seismic Attenuation Estimation Using the Sublimated Centroid Frequency Shift Method]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11226959]]></link>
+			<description><![CDATA[Seismic attenuation is an important reservoir characteristic, as it is highly sensitive to changes in rock pore fluids. The sensitivity of attenuation makes it a valuable parameter for monitoring reservoir dynamics. This article presents an advanced method for quality factor ( $Q$ ) estimation and attenuation difference (AD) estimation, which builds upon the frequency-independent centroid frequency shift (FiCFS) and divergence-based centroid frequency shift (CFS) methods. In contrast to conventional  $Q$  value estimation techniques, our approach provides frequency independence, enhanced noise immunity, and heightened sensitivity to minor attenuation variations. This method addresses the issues associated with centroid frequency discrepancies and simplifies the calculations by eliminating the necessity for traveltime differences. The superiority of the noise immunity and amplification effect of AD estimation is demonstrated by synthetic data experiments, which also facilitate easier monitoring of reservoir changes. The efficacy of this method is validated through the CO2 injection monitoring at the Frio II site, which demonstrates its ability to detect fluid changes within the reservoir. The in-depth analysis of variance, divergence, and centroid frequency difference reveals the direct impact of these disparate methodologies and substantiates the sublimation of the novel approach.]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11226959]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>12</endPage>
+			<fileSize>8519</fileSize>
+			<authors><![CDATA[Junqing Yu;Xiangyang Cao;Hao Liu;Huijian Li;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[AR-SMFWI: A Hybrid Artifact Removal and Spatial Multiscale FWI Approach for Common-Offset GPR Data]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236412]]></link>
+			<description><![CDATA[Full waveform inversion (FWI) has shown great potential for high-resolution imaging in ground-penetrating radar (GPR) applications. However, existing research has primarily focused on multioffset or crosshole GPR configurations, while common-offset GPR (Co-GPR), despite its advantages in system simplicity and cost-effectiveness, is less studied due to its inherent ill-posedness and limited angular illumination. To tackle the challenges of deep gradient attenuation, artifact contamination, and high computational cost in Co-GPR FWI, this study introduces a robust and efficient inversion framework. First, an illumination compensation strategy based on envelope extrema is proposed to adaptively enhance sensitivity to deep reflectors, effectively counteracting energy decay without relying on Hessian approximations. Second, a singular value decomposition (SVD)-based filtering method is integrated into the gradient update to suppress artifacts from hyperbolic tails and spurious cross correlation effects. Furthermore, a frequency-guided spatial multiscale strategy is incorporated within a subspace FWI framework, allowing dynamic adjustment of spatial and temporal resolution according to the dominant frequency, which significantly reduces computational demands. Numerical experiments on synthetic and field 2-D/3-D data validate the proposed methodology. The results demonstrate that the method produces structurally consistent images with fewer artifacts and enhanced depth resolution. Quantitatively, it achieves a structural similarity index measure (SSIM) of up to 95.67% and a relative SSIM (R-SSIM) exceeding 96%. The proposed approach provides a viable solution for large-scale Co-GPR inversion under limited computational resources and offers new insights for extending FWI to practical GPR imaging scenarios.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236412]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>5537</fileSize>
+			<authors><![CDATA[Yu Yang;Xu Bai;Yulong Gao;Hongrui Li;Guanting Liu;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Blind Seismic Reflectivity Inversion of Prestack Angle Gathers With Angle-Based Regularization]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11224843]]></link>
+			<description><![CDATA[The angle gathers are the data basis of prestack seismic inversion, and their resolution directly determines the resolution of the inverted elastic parameters. Seismic reflectivity inversion (SRI) is a technique that is able to estimate reflectivity from seismic data and consequently improve the resolution of seismic data. However, the existing SRI method for angle gathers faces two problems: 1) the assumption that the wavelet is known does not align with reality and 2) compared with the exact Zoeppritz equation, approximation equations will introduce errors in large angles. To overcome these shortcomings, in this article, we propose a new blind SRI method for enhancing the resolution of angle gathers. This method can simultaneously build the wavelet and reflectivity of angle gathers without the need for a predefined wavelet, and an angle-based regularization term is constructed to ensure continuity in angle, especially in noisy cases. We use both synthetic experiments on a modified Marmousi model and also a field data experiment using a dataset from the Hampson–Russell software to assess the performance of the proposed method and compare its performance with an existing method. The results clearly validate the effectiveness of the proposed method and its superiority over the existing method in producing high-quality reflectivity models for angle gathers.]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11224843]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>14607</fileSize>
+			<authors><![CDATA[Zhaoqi Gao;Zitong Chen;Fanrui Guo;Yan Yang;Zhen Li;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Space–Time Dynamic Antenna Array Design for Fourier-Domain Microwave Remote Sensing]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236959]]></link>
+			<description><![CDATA[We present a general approach for integrating space–time array dynamics into a Fourier-domain remote sensing system design that is based on individual antenna trajectories in a multiscale temporal framework. Similar to a data cube in radar systems, we consider both fast time and slow time, resulting in a 4-D data hypercube with dimensions of fast time, slow time, and two spatial–frequency dimensions. The fast-time dimension impacts the signal-to-noise ratio (SNR) of the measurement, while the slow-time dimension impacts the Fourier-domain sampling function by generating new samples over time through the space–time dynamics of the array. We build on Fourier imaging theory to explore the use of element trajectories in cases relevant to recent remote sensing research: Fourier imaging from an array of drones, and imageless object characterization based on measuring Fourier-domain artifacts. We present the fundamental theory of interferometric imaging with space–time array dynamics, beginning with traditional interferometric Fourier-domain imaging, which is expanded upon to include slow-time array dynamics. We characterize the Fourier-domain sampling function in terms of the trajectories of the antenna array elements in slow time, forming a fundamental approach for designing and characterizing Fourier-domain imaging systems with moving elements. We then explore potential applications of the theory. First, we explore remote sensing of ground scenes using coordinated sensors on drone swarms with space–time motion, leveraging redundant sampling points in the spatial Fourier domain accrued over the space–time motion to identify a moving target. Then, we present an approach for imageless characterization of close-range objects using a space–time dynamic rotational antenna array that can be applied to contraband detection; this is also based on the concept of leveraging redundantly sampled spatial Fourier points.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:03 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236959]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>17</endPage>
+			<fileSize>9509</fileSize>
+			<authors><![CDATA[Daniel Chen;Jeffrey A. Nanzer;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A Frequency-Domain Iterative Approach for Rapid 3-D Imaging of Large-Scale Magnetic Amplitude Data Affected by Remanence]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11232513]]></link>
+			<description><![CDATA[The remanent-magnetization effects pose a great challenge to the application of magnetic exploration in fields such as metallic mineral prospecting, igneous rock detection, and tectonic studies. Magnetic data inversion is one important tool to produce the magnetism structure in the subsurface, but the traditional inversion techniques for large-scale data suffer not only from the complicated influence of remanent magnetization but also from calculational difficulties in solving large-scale nonlinear inverse problems. Aiming to address these difficulties under the remanence, we propose a 3-D frequency-domain imaging approach of magnetic amplitude anomaly (MAA) to derive a 3-D model of susceptibility or magnetization intensity in the subsurface. The MAA, insensitive to the remanence, is adopted to weaken the influence of remanent magnetization effectively on imaging. The frequency-domain formulas for forward calculation and imaging of MAA are derived without the involvement of traditional nonlinear inverse equations and are utilized for 3-D imaging, both of which make the imaging fast, stable, and suitable for large-scale data. In addition, the iterative optimization algorithm is employed to improve the fitting between the real MAA and the predicted one caused by the imaging model, making the imaging highly precise. Tests on synthetic data with complicated remanent magnetization prove the effectiveness of our approach and demonstrate that it is easy to conduct, rapid, stable, and noise-resistant and produces much better models than the traditional space-domain or frequency-domain inversion approaches. Test on the real aeromagnetic data from Datong area in North China also verifies the effectiveness of our approach, with the resultant crustal 3-D susceptibility model better than the traditional space-domain inversion approach. Our model reconstructs the architecture of the Precambrian basement within the crust in the study area and reveals the existence of a northeast-trending high-magnetism body beneath Datong volcanic group, extending from the deep crust upward to near the surface, which is interpreted as the cooled mafic magma conduit. Our model will provide significant constraints for understanding the volcanic genesis of Datong volcanic group.]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11232513]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>15605</fileSize>
+			<authors><![CDATA[Mei Han;Lianghui Guo;Yatong Cui;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[O-Net: Bidirectional Encoding and Decoding Architecture for Infrared Small Target Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11227120]]></link>
+			<description><![CDATA[Infrared small target detection (ISTD) faces significant challenges in effectively utilizing shallow and deep features while mitigating spatial detail degradation during sampling. To address these issues, we propose O-Net, a novel network architecture featuring a bidirectional encoder–decoder pathway that effectively integrates shallow and deep information of infrared small targets. The proposed O-shape dense connection (ODC) further alleviates spatial detail degradation through multilevel feature interaction and reuse. First, we introduce the adaptive pixel-wise cooperative mechanism (APCM), which enhances the encoder’s feature extraction capability by synergistically extracting and fusing local and global features. Second, we design the adaptive dual perception attention module (ADPAM), which dynamically focuses on the key features and regions of infrared small targets by combining channel and spatial attention mechanisms, thereby improving the model’s sensitivity to target information. Finally, the ODC strengthens the model’s contextual awareness, effectively addressing challenges, such as low contrast and noise interference in complex backgrounds. The experimental results on the NUAA-SIRST and IRSTD-1K datasets demonstrate that our method outperforms state-of-the-art approaches. The code for this work is publicly available at https://github.com/liuyb77/O-Net]]></description>
+			<pubDate><![CDATA[WED, 05 NOV 2025 09:17:13 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11227120]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>15501</fileSize>
+			<authors><![CDATA[Ying-Bin Liu;Wen Liu;Han-Yan Huang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[ISGLNet: Infrared Small Target Detection With Intrinsic Sensitivity and Guided Learning]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11232501]]></link>
+			<description><![CDATA[Infrared small target detection (IRSTD) plays a critical role in both civilian and military applications, yet it still faces inherent challenges stemming from faint targets, complex noise interference, and difficulties in preserving shape integrity. Despite significant progress in detecting general small targets, existing methods often struggle to balance detection accuracy and false alarms due to limited sensitivity to low-intensity signals, inaccurate perception of confusing noise, and inadequate edge refinement. To break this dilemma, we propose ISGLNet, which centers on a U-shaped architecture specifically tailored to preserve salient target responses, along with a guided learning strategy that progressively enhances target–noise distinction while refining boundary details. Specifically, we introduce the context-aware local–global module (CLGM) as the cornerstone of the model, which incorporates multibranch large receptive fields and multidimensional adaptive attention mechanisms, effectively capturing rich contexts while preserving critical target information. This ensures reliable feature modeling throughout the extraction and fusion process. Furthermore, the multifrequency perception module (MFPM) and the edge refinement module (ERM) replace conventional skip connections to refine semantic patterns through guidance. Among these, the MFPM operates in the deeper layers, primarily identifying discriminative clues by evaluating and dynamically selecting multifrequency information to amplify the distinction between targets and complex noise. The ERM further works in the shallower layers with a progressive strategy to refine uncertain target boundaries, enabling precise segmentation of fine-grained target shapes. Extensive experiments on multiple public datasets demonstrate that ISGLNet achieves superior performance in both detection and segmentation accuracy. The code is available at https://github.com/fuqingzhang/ISGLNet]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11232501]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>17</endPage>
+			<fileSize>5016</fileSize>
+			<authors><![CDATA[Fuqing Zhang;Anning Pan;Jing Yang;Shen Deng;Shan Zhao;Chengjiang Zhou;Yang Yang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[AnyTSR++: Prompt-Oriented Any-Scale Thermal Super-Resolution for Unmanned Aerial Vehicle]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11231393]]></link>
+			<description><![CDATA[Thermal imaging significantly augments the operational capabilities of intelligent unmanned aerial vehicles (UAVs) in complex environments. However, due to the limited resolution of onboard thermal sensors, thermal images captured by UAV suffer from insufficient detail and blurred object boundaries, thereby limiting their practicality. Although super-resolution (SR) provides a promising solution to this issue, existing any-scale SR methods adopt identical feature representations across all scales, lacking the ability to adaptively adjust features according to varying scale requirements, leading to suboptimal SR results. This issue becomes more pronounced in asymmetric scale SR, where the resolution differs significantly along different directions. To address these limitations, a novel prompt-oriented any-scale thermal SR (AnyTSR++) method is proposed for UAV. Specifically, a new image encoder is introduced to explicitly assign any-scale prompt, enabling more precise and adaptive feature representation. Furthermore, an innovative any-scale upsampler is designed by refining the coordinate offset and the local feature ensemble, enhancing spatial awareness and reducing artifacts. Additionally, a novel dataset (UAV-TSR++) comprising 24000 images covering both land and water surface scenes is constructed to facilitate the community to conduct thermal SR research. Experimental results demonstrate that AnyTSR++ consistently outperforms state-of-the-art (SOTA) methods across both symmetric and asymmetric scaling factors, producing higher resolution images with greater accuracy and more fine-grained details. The source code and new dataset are located at https://github.com/vision4robotics/AnyTSR++]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11231393]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>5790</fileSize>
+			<authors><![CDATA[Mengyuan Li;Changhong Fu;Ziyu Lu;Zijie Zhang;Haobo Zuo;Liangliang Yao;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Prior Knowledge Enhanced Learning Approach for Infrared Small-Target Detection With Single-Point Supervision]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11239487]]></link>
+			<description><![CDATA[The data-driven infrared small-target detection (IRSTD) methods have witnessed remarkable advancements in performance. However, these methods typically rely on high-quality pixel-level mask labels, requiring substantial human effort and time for annotation. To tackle this challenge, we propose a prior knowledge enhanced learning approach (PKELA), which contains two key strategies: the prior knowledge enhanced initial pseudo-label generation (PKEIPG) strategy and the teacher knowledge guided label update (TKGLU) strategy. Specifically, for the PKEIPG strategy, we introduce a local contrast enhancement (LCE) module based on prior knowledge to suppress background interference. Drawing inspiration from the human brain’s processing sequence of visual information, we locate an appropriate neighborhood containing the infrared small target by identifying the target’s edges. Within this neighborhood, high-quality initial pseudo-labels are obtained through adaptive threshold segmentation, which provide strong supervisory signals for the data-driven IRSTD method during the initial training phase. For the TKGLU strategy, we employ an exponential moving average (EMA) teacher model that dynamically updates its parameters based on the current model’s state. Furthermore, a memory bank is established to archive the teacher model’s performance, which is treated as prior knowledge. This knowledge is then systematically used to guide the refinement of pseudo-labels. Experimental results on the SIRST, NUDT-SIRST, IRSTD-1k, and SIRST3 datasets indicate that our PKELA exhibits superior training performance with single-point labels. By incorporating our approach, the data-driven IRSTD methods could achieve near-full-supervised performance in terms of probability of detection (Pd) metric, with intersection over union (IoU) and normalized IoU (nIoU) reaching up to 95.75% and 95.82% of full-supervised performance, respectively. Our code is available at https://gitee.com/mynewspace/pkela.]]></description>
+			<pubDate><![CDATA[TUE, 11 NOV 2025 09:16:26 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11239487]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>18</endPage>
+			<fileSize>16752</fileSize>
+			<authors><![CDATA[Peichao Wang;Jiabao Wang;Renke Kou;Rui Zhang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Bias Field Correction for Infrared Images Based on Surface Normal Consistency Constraints]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236091]]></link>
+			<description><![CDATA[Due to the mechanism and structure of infrared (IR) imaging devices, IR sensors inevitably capture thermal radiation from nonimaging sources, resulting in thermal radiational bias fields superimposed on IR images. These bias fields manifest as low-frequency nonuniformities, which are difficult to disentangle from low-frequency image regions (background planes and object surfaces). Existing methods frequently fail to reliably isolate true bias fields in IR images containing extensive flat regions, resulting in reduced contrast and degraded intensity fidelity in the corrected outputs. To overcome this limitation, we investigate the geometric patterns underlying IR image degradation and make a critical observation: the unbiased images typically contain extensive flat regions, while in biased images, the surface normals of those regions exhibit strong consistency with surface normals of the bias field. Leveraging this insight, we propose a novel bias field correction method that utilizes surface normal consistency as a structural prior. The proposed method begins with the local planar fitting to estimate surface normals from the observed image efficiently. Subsequently, the cosine similarity is computed between surface normals of adjacent blocks to identify regions dominated solely by bias field normals. Finally, a least-squares optimization problem is formulated and solved to estimate the bias field. In addition, by exploiting the temporal consistency of the bias field, this method could be extended to IR video via a motion-frame accumulation framework. Extensive experiments on synthesized and real data demonstrate the generality and effectiveness of the proposed method.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236091]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>6714</fileSize>
+			<authors><![CDATA[Jun Xie;Lingfei Song;Hua Huang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Angular Ambiguity Function and Resolution Analysis for Multichannel Radar Forward-Looking Imaging]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11232462]]></link>
+			<description><![CDATA[With multiple channels in azimuth receiving echoes, multichannel radar has the potential for forward-looking imaging, and various schemes can be formulated. However, due to the different resources utilized by different imaging schemes, the angular resolution will be different. How to analyze the angular resolution and then design appropriate parameters is a key issue in multichannel radar forward-looking imaging. In this article, based on the echo model of forward-looking imaging, the imaging schemes of synthetic aperture and real aperture are illustrated first. Then, based on the ambiguity function (AF) theory, the angular AFs (AAFs) and the analytical expressions of the angular resolution for different imaging schemes are derived and analyzed. Finally, the simulation results of point targets and extended targets are presented to verify the effectiveness of the theoretical analysis, which would lay a significant foundation for the design of forward-looking imaging schemes of multichannel radar.]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11232462]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>6404</fileSize>
+			<authors><![CDATA[Jianyu Yang;Rui Chen;Wenchao Li;Kun Zhang;Bowen Cheng;Zhongyu Li;Junjie Wu;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Analysis of Multidimensional Characteristics of Rainfall Echoes at Multiple Microwave Frequencies]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11237141]]></link>
+			<description><![CDATA[Rainfall over the ocean strongly influences microwave remote sensing by altering electromagnetic scattering mechanisms, complicating radar backscatter interpretation and its relationship to surface wind. However, in-depth understanding of these effects under different surface and frequency conditions remains limited. In this study, for the first time, coordinated multifrequency radar observations at C-, X-, and Ku-bands were carried out to investigate scattering from 1) airborne raindrops; 2) rain perturbed windless water surface; and 3) wind-driven sea surface agitated by rain. Field measurements combined radar backscatter intensity with Doppler spectral signatures to elucidate the underlying scattering mechanisms. Synchronized radar and optical imaging enabled joint characterization of scattering signatures and geometric features of wind waves and rain-induced ring waves. Results reveal pronounced variations in both airborne raindrop scattering and surface backscattering under different rainfall rates, frequency bands, and polarizations. Under low sea-state conditions, Doppler spectra exhibit a distinct dual-peak structure attributable to ring wave backscattering, whereas at higher sea states this feature is masked by the dominant spectral energy of wind waves. Using rain-induced ring wave theory and the small-slope approximation (SSA), Doppler spectra due to ring waves were simulated and validated against experimental measurements. This study clarifies the mechanisms of rain-induced scattering and demonstrate the dominant role of ring waves in shaping the observed Doppler spectral signatures.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11237141]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>4208</fileSize>
+			<authors><![CDATA[Jianbo Cui;Yunhua Wang;Pengbo Du;Honglei Zheng;Yanmin Zhang;Fanwei Su;Qian Li;Daozhong Sun;Yining Bai;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A Technique for Investigating the Spatial Features of E-Region Irregularities Based on a Bistatic All-Sky Radar System]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11231378]]></link>
+			<description><![CDATA[The all-sky radar, also known as all-sky meteor radar, is primarily used to study mesospheric neutral wind by observing specular meteors, and has been recently developed to investigate the spatial features of ionospheric E-region irregularities. However, the interferometry result by a single all-sky radar may contain potential errors under certain conditions, e.g., radio signal refraction. This article proposes a new method to investigate the spatial features of low-latitude E-region irregularities based on a bistatic all-sky radar system installed in Hainan, China, including two all-sky radars located at Ledong and Sanya, respectively, which are separated by ~70 km. Ledong radar is for radio signal transmission and reception, while Sanya radar is only for reception. By employing the interferometry technique in the bistatic all-sky radar system, the spatial features of E-region irregularities could be investigated in a larger field-of-view (FOV). Preliminary interferometry cases of E-region irregularities under different conditions are presented, showing a good performance of this technique. The observations obtained by the two subradars of the bistatic system could verify the interferometry results to further determine whether there are obvious detection errors or complement each other to acquire more information about the spatial location, morphology, and evolution of E-region irregularities.]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11231378]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>12</endPage>
+			<fileSize>11395</fileSize>
+			<authors><![CDATA[Wenjie Sun;Guozhu Li;Jianfei Liu;Lianhuan Hu;Zhaoguo Huang;Haiyong Xie;Yi Li;Xiukuan Zhao;Guofeng Dai;Baiqi Ning;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[In-Orbit Assessment of the Synchronization Performance of LuTan-1 Bistatic SAR]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11232493]]></link>
+			<description><![CDATA[Time synchronization and phase synchronization are indispensable for spaceborne bi-/multistatic synthetic aperture radar (SAR) systems. The LuTan-1 (LT-1) bistatic SAR system employs a time synchronization scheme combining pulse-per-second (PPS) signals with GNSS-disciplined oscillators (GDOs), along with a novel noninterrupted alternate pulse (NIAP) scheme for phase synchronization. Furthermore, the time synchronization accuracy can be further enhanced by applying the two-way time transfer (TWTT) technique based on synchronization data from the NIAP scheme. To accurately evaluate the synchronization performance of the LT-1 system during in-orbit operation, an assessment method based on the 2-D positional offset of calibration targets is proposed. The method compares the theoretical offsets derived from imaging geometry with the measured offsets extracted from monostatic and bistatic SAR images to determine the system’s time and frequency deviations. Using 16 repeat-pass acquisitions over the calibration field in Hami, Xinjiang, during LT-1’s bistatic operation phase, the in-orbit synchronization performance of LT-1 is demonstrated. The PPS + GDO scheme achieves time synchronization accuracy under 100 ns, while the TWTT algorithm enhances this metric by three orders of magnitude, which is better than 0.10 ns. After NIAP phase synchronization, the LT-1 system exhibits a frequency deviation of approximately  $-2.17\times 10^{-3}$  Hz, corresponding to frequency stability of  $2\times 10^{-12}$ .]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11232493]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>6448</fileSize>
+			<authors><![CDATA[Yonghua Cai;Zongbiao Chen;Yachao Wang;Bo Li;Yuesheng Chen;Pingping Lu;Yingfei Sun;Robert Wang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[SARCLIP: The First Vision–Language Foundation Model for SAR Image]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11231801]]></link>
+			<description><![CDATA[Foundation models have achieved remarkable breakthroughs across various domains, with the widely use of masked image modeling (MIM) and self-supervised learning (SSL). However, these models lack language comprehension, which limits their ability to generalize in downstream tasks and zero-shot applications. The contrastive language–image pretraining (CLIP) model overcomes these challenges by integrating textual information and performs exceptionally in remote sensing. However, no such multimodal model exists for the synthetic aperture radar (SAR) domain. To bridge this gap, we propose SARCLIP, a vision–language model specially designed for SAR, which leverages textual supervision to enhance visual representation and achieves fine-grained vision–language alignment through modality alignment. First, to overcome the lack of SAR image-to-text datasets, we propose the detection-to-caption (D2C) algorithm, which transforms the heterogeneous format of object detection into diverse captions, ultimately creating the vision–language dataset, MMSAR. In addition, to address the distortion and information loss caused by downsampling in high-resolution SAR images, we propose AnyReader, a dynamic module capable of processing images of any size through a low-resolution encoder. We validate SARCLIP’s generalization and performance on five downstream tasks: image-to-text retrieval, zero-shot classification, few-shot classification, linear probing, and object counting. Especially, we introduce a new counting benchmark, SARCount. Our results demonstrate that SARCLIP consistently outperforms the CLIP baseline across various model sizes. Impressively, SARCLIP achieved a 7.07% higher average recall on the retrieval task compared to the largest CLIP model. In zero-shot classification, SARCLIP surpasses CLIP by 7.8% in average accuracy across three downstream datasets.]]></description>
+			<pubDate><![CDATA[FRI, 07 NOV 2025 09:16:58 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11231801]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>1871</fileSize>
+			<authors><![CDATA[Pengfei Wang;Zhuhao Lu;Yajun Li;Baogang Ding;Ding Zhang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Despeckling of Synthetic Aperture Radar Images Using Linear–Angular Attention Transformer]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11225891]]></link>
+			<description><![CDATA[Synthetic aperture radar (SAR) images are often contaminated by speckle noise, a type of multiplicative noise resulting from the imaging process. SAR image despeckling is a crucial preprocessing step for satellite imaging, enhancing image visualization and facilitating downstream analysis. In this study, we propose a linear–angular attention transformer network for SAR despeckling. The approach efficiently captures both local and global context in linear time within a multiscale transformer–convolutional neural network architecture. Our transformer integrates nonlocal denoising and multiscale feature extraction in a single model. Using a smoothing loss and fast nonlocal post-processing, the model achieved a 17% improvement in structural similarity index, a 61% enhancement in contrast-to-noise ratio, and an increase above 100% in the equivalent number of looks metric across three datasets compared to multiple state-of-the-art baselines, even when trained on a small dataset and for only 13 epochs. Comparison with different multihead self-attention mechanisms revealed the effectiveness of linear–angular attention as a step toward green artificial intelligence (AI), showing both quantitative and qualitative performance improvements. Unlike models that rely on optical images for training and lack domain-specific features for real SAR despeckling, the proposed network is trained directly on SAR images in a self-supervised manner.]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11225891]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>2625</fileSize>
+			<authors><![CDATA[Souraja Kundu;M. K. Bhuyan;Karl F. MacDorman;Neeraj Kumar Sharma;Manish Bhatt;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A WaveCluster-Based Robust and Fast Multibaseline InSAR Phase Unwrapping Algorithm]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236427]]></link>
+			<description><![CDATA[Phase unwrapping (PU) is a critical step in interferometric synthetic aperture radar (InSAR) data processing. Among all PU methods, the multibaseline PU (MBPU) method is a state-of-the-art method, which can overcome the limitations of the phase continuity assumption in the traditional single-baseline PU (SBPU) methods. However, the MBPU methods still cannot effectively balance PU accuracy and efficiency when processing large-size interferograms. In particular, the current best MBPU methods, the two-stage programming approach (TSPA), cannot work well when the baseline ratio is less than 2, limiting its application. To solve this problem, a WaveCluster-based robust and fast MBPU algorithm (WCRFPU) is proposed in this article. First, appropriate initial grid and neighborhood parameters are selected according to the exclusive information of the InSAR dataset to reduce the number of wrong clusters caused by dimension mismatch. Then, the WaveCluster algorithm is used to cluster the intercept map with 3-D clustering features, which can obtain more accurate clustering results and efficiently handle large-sized interferograms. Subsequently, a cluster correction step is added to improve the PU accuracy further. Theoretical analysis and experimental results show that this method has more advantages than the existing MBPU methods in efficiency, accuracy, and adaptability to baseline ratios when processing large-size interferograms.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236427]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>17</endPage>
+			<fileSize>4260</fileSize>
+			<authors><![CDATA[Zhihui Yuan;Zhengguo Wang;Hanwen Yu;Xuemin Xing;Lifan Zhou;Lifu Chen;Junyi Xu;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[RGBT Fusion-Based Airborne Synthetic Aperture Occlusion Removal Target Imaging]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11224908]]></link>
+			<description><![CDATA[Drones are gaining increasing popularity in bush search and rescue operations, where enhancing the accuracy of occluded target detection is crucial to find the targets. However, airborne light detection and ranging (LiDAR) and multispectral cameras are limited by cost, efficiency, and imaging quality, while RGB- or thermal-based detection methods rely heavily on the model performance and prior knowledge. Recovering the target in imaging is a new frontier for occluded target perception. Here, we propose a novel synthetic aperture fusion imaging (SAFI) method for drones, combining an RGBT fusion network with synthetic aperture imaging (SAI) to recover occluded targets. First, we propose a color-contrast RGBT fusion network (C-RGBTNet) based on a transformer. C-RGBTNet captures target thermal features from thermal images and assigns RGB color features to occlusions, generating high-quality fusion images. Then, we apply hue, saturation, and value (HSV)-based color segmentation to isolate the target with strong thermal intensity (high brightness) from the cluttered background. Finally, we perform SAI, synthesizing the different segmented target parts to yield an occlusion-free target image. Experimental results in our home-brew downward-view multimodal bush (DMB) dataset demonstrate that SAFI achieves high-quality target imaging with effective occlusion removal, significantly outperforming traditional methods.]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11224908]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>19210</fileSize>
+			<authors><![CDATA[Yuan Yue;Chunna Tian;Zhiwei Jiang;Xiangyang Li;Shiguo Chen;Dongliang Hou;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[PanDiT: A Few-Step Diffusion Transformer for High-Fidelity and Efficient Pansharpening]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11235951]]></link>
+			<description><![CDATA[Pansharpening plays a crucial role in remote sensing by fusing low-resolution multispectral (LRMS) images and high-resolution panchromatic (PAN) images to generate high-resolution multispectral (HRMS) images. While denoising diffusion models offer potential for high-fidelity image generation, their practical application in pansharpening has been severely hindered by huge computational costs from iterative sampling and naive conditioning strategies that struggle to fuse multimodal information effectively. In this article, we introduce PanDiT, a novel diffusion transformer (DiT) framework designed to address these challenges. PanDiT is built on the core principle of a decoupled conditioning mechanism, which explicitly disentangles and injects spatial and spectral guidance, and is engineered for practical, few-step inference. Our framework leverages a powerful DiT backbone, where conditioning is achieved through two specialized injection blocks that capture spatial and time–frequency features. Crucially, by integrating an implicit sampling strategy, we accelerate the inference process to as few as two steps. Extensive experiments on multiple benchmark datasets demonstrate that PanDiT not only establishes a new state-of-the-art in fusion quality and achieves a good quality-efficiency trade-off. Code is available at https://github.com/para133/PanDIT]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11235951]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>2375</fileSize>
+			<authors><![CDATA[Jiabin Fang;Ke Cao;Xuanhua He;Jie Zhang;Man Zhou;Liu Liu;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[SFFR: Spatial–Frequency Feature Reconstruction for Multispectral Aerial Object Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11240218]]></link>
+			<description><![CDATA[Recent multispectral object detection methods have primarily focused on spatial-domain feature fusion based on CNNs or Transformers, while the potential of frequency-domain feature remains underexplored. In this work, we propose a novel spatial and frequency feature reconstruction (SFFR) method, which leverages the spatial–frequency feature representation mechanisms of the Kolmogorov–Arnold network (KAN) to reconstruct complementary representations in both spatial and frequency domains prior to feature fusion. The core components of SFFR are the proposed frequency component exchange KAN (FCEKAN) module and multiscale Gaussian KAN (MSGKAN) module. The FCEKAN introduces an innovative selective frequency component exchange strategy that effectively enhances the complementarity and consistency of cross-modal features based on the frequency feature of RGB and IR images. The MSGKAN module demonstrates excellent nonlinear feature modeling capability in the spatial domain. By leveraging multiscale Gaussian basis functions, it effectively captures the feature variations caused by scale changes at different uncrewed aerial vehicle (UAV) flight altitudes, significantly enhancing the model’s adaptability and robustness to scale variations. It is experimentally validated that our proposed FCEKAN and MSGKAN modules are complementary and can effectively capture the frequency and spatial semantic features, respectively, for better feature fusion. Extensive experiments on the SeaDroneSee, DroneVehicle, and DVTOD datasets demonstrate the superior performance and significant advantages of the proposed method in the UAV multispectral object perception task. Code will be available at https://github.com/qchenyu1027/SFFR]]></description>
+			<pubDate><![CDATA[TUE, 11 NOV 2025 09:16:26 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11240218]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>2259</fileSize>
+			<authors><![CDATA[Xin Zuo;Chenyu Qu;Haibo Zhan;Jifeng Shen;Wankou Yang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[ULADiff: Unmixing-Guided Learnable Abundance-Latent Diffusion for Hyperspectral Image Denoising]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11244146]]></link>
+			<description><![CDATA[Hyperspectral image (HSI) denoising is a critical preprocessing step in remote sensing. Recently, the denoising diffusion probabilistic models (DDPMs) have emerged as powerful generative models. However, applying DDPM to the HSI denoising task remains challenging owing to the scarcity and acquisition difficulty of HSIs. Thus, how to effectively incorporate physical priors into the DDPM to improve denoising performance remains an underexplored issue. To this end, we propose an unmixing-guided learnable abundance-latent diffusion (ULADiff) for HSI denoising, which is a from-scratch, task-specific diffusion framework that incorporates physically interpretable priors and conditional information into the DDPM. ULADiff comprises three key components, including a spectral unmixing transformer (SUT) network, an abundance-based diffusion model, and a reconstruction module. Specifically, we employ a learnable block-based SUT module in a self-supervised manner to decompose noisy HSIs into the abundance maps and endmembers. The SUT module enables the diffusion model to operate in a lower-dimensional abundance domain that better captures the underlying structure of HSIs. Then, we incorporate the first eigenimage, the reconstructed image via singular value decomposition (SVD), as a physically meaningful condition to facilitate controllable generation. Furthermore, we propose a reconstruction module that enforces a spatial–spectral consistency prior by simultaneously imposing total variation (TV) regularization on the endmembers and a sparsity constraint on the abundance maps. This design preserves the intrinsic structures of the HSI and improves reconstruction quality. Comprehensive evaluations on synthetic and real-world datasets demonstrate that ULADiff outperforms state-of-the-art methods in both quantitative performance and visual fidelity.]]></description>
+			<pubDate><![CDATA[WED, 12 NOV 2025 09:16:24 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11244146]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>10160</fileSize>
+			<authors><![CDATA[Zhe-Min Wei;Heng-Chao Li;Yu-Bang Zheng;Jian-Li Wang;Qian Du;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Embracing Hierarchical Classification: A Multifeature Space Hierarchical Network for Hyperspectral Image Classification]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11230546]]></link>
+			<description><![CDATA[Classes in hyperspectral images (HSIs) often exhibit inherent hierarchical structures, such as the familygenusspecies hierarchy in tree species. Previous studies have shown that modeling these hierarchical structures can improve classification performance. However, existing deep learning methods often overlook such structures, limiting their ability to distinguish fine-grained categories. To address this issue, we propose a multi-feature space hierarchical network (MFS-HiNet), which enhances fine-grained discrimination by modeling hierarchical relationships and guiding classification top-down. The framework consists of three key components: hierarchical structure mining (HSM), multifeature space classification network (MFSCN), and parameter inheritance strategy (PIS). Specifically, HSM automatically mines latent hierarchical relationships in HSI and constructs the hierarchy; MFSCN integrates multifeature space information for node classification to improve the discrimination of subtle interclass differences; and PIS leverages parent node parameters to guide the learning of child nodes, fully exploiting interlevel correlations. Experimental results on five HSI datasets demonstrate that MFS-HiNet outperforms existing methods in classification accuracy, validating the effectiveness of the framework and highlighting the potential of hierarchical classification. The source code will be made available at https://github.com/jin-yaoWHU/MFS-HiNet]]></description>
+			<pubDate><![CDATA[THU, 06 NOV 2025 09:17:05 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11230546]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>17</endPage>
+			<fileSize>6804</fileSize>
+			<authors><![CDATA[Yao Jin;Chen Wu;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[PS2Mamba: A Pyramid-Based Spectral–Spatial Mamba for Hyperspectral Image Classification]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11237165]]></link>
+			<description><![CDATA[When hyperspectral image (HSI) classification encounters high-dimensional spectral channels, the feature utilization rate is often low due to significant redundancy between channels and uneven discriminatory power. Furthermore, different land cover types exhibit notable differences in scale and morphological changes across space. This structural diversity poses significant challenges to spatial feature modeling. To address this problem, this article proposes a novel framework based on the Mamba model-PS2Mamba for HSI classification. This framework integrates three strategies: spectral fine modeling, global perceptual scale adaptation, and multiscale spatial structure modeling. First, this article designs a statistically enhanced normalized band refinement (SENBR) module, which dynamically enhances or suppresses channel features based on channel correlation, variability, and importance, effectively suppressing redundant and noisy bands. Second, a global-aware scale adaptation (GASA) module is proposed. By incorporating a scale scoring network and a multidirectional modeling mechanism, this module enables adaptive perception and directional enhancement modeling of spatial structures at different scales. Finally, a lightweight multiscale spatial structure extraction module, LightPyramid, is constructed. By enriching spatial semantic information through multibranch parallel convolutions, it enhances the model’s ability to represent complex surface structures, while maintaining spatial resolution. Experimental results on four representative hyperspectral datasets, including Pavia University (PU), Salinas (SA), and two unmanned aerial vehicle (UAV)-based datasets (HongHu and HanChuan), demonstrate that PS2Mamba achieves overall accuracies of 98.77%, 99.61%, 96.20%, and 96.01%, respectively. Compared with existing convolutional neural network (CNN)-, graph convolutional network (GCN)-, Transformer-, and Mamba-based models, PS2Mamba achieves up to 12.91% improvement in accuracy, showing superior generalization and robustness, particularly under small-sample conditions.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11237165]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>19</endPage>
+			<fileSize>8088</fileSize>
+			<authors><![CDATA[Cuiping Shi;Yiting Wang;Weiwei Sun;Diling Liao;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Adaptive Temperature-Driven Ternary Contrastive Autoencoder Framework for Hyperspectral Target Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236413]]></link>
+			<description><![CDATA[Hyperspectral target detection (HTD) is a critical task in remote sensing, where numerous deep learning (DL)-based methods have emerged for their powerful ability to extract hierarchical and discriminative features. However, challenges such as insufficient labeled samples and spectral variability lead to formidable issues for DL-based methods like model underfitting and poor robustness. In particular, existing contrastive learning (CL)-based detectors rely on native positive–negative pair construction while overlooking hidden positive pairs (i.e., positive but mistakenly constructed as negative), which undermines the model’s ability to maintain consistent feature representation. To address the above issues, we propose an adaptive temperature-driven ternary contrastive autoencoder (ATTCA) framework, which performs HTD in a self-supervised manner. Initially, we introduce a novel augmentation technique named strong–weak frequency-domain interference (S-WFI) to expand data while establishing the ternary framework, which can balance the robustness and representation consistency of the model. Additionally, a dual-stream quad-scan Mamba (DSQM) network based on a compositing selective state-space model (SSM) is tailored to effectively extract multiscale spatial–spectral features and mitigate the effects of spectral variation. Ultimately, we formulate a reconstruction weight-driven adaptive temperature (RWAT) strategy to dynamically adjust parameters and suppress the separation of hidden positive pairs, which can facilitate the alignment of target features effectively. Experimental results on four real-world benchmark datasets demonstrate that our approach outperforms state-of-the-art methods in terms of detection performance and efficiency.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236413]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>13457</fileSize>
+			<authors><![CDATA[Jiaojiao Li;Hangyun Liu;Haitao Xu;Chengyuan Wang;Yunsong Li;Qian Du;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[PGSMC: Prototype-Guided Supervised Momentum Contrastive Learning for Hyperspectral Cross-Domain Few-Shot Classification]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11242220]]></link>
+			<description><![CDATA[Contrastive learning (CL) has recently demonstrated great potential in hyperspectral image (HSI) few-shot classification. However, conventional methods mainly emphasize instance-level similarity while neglecting class structure, often leading to the separation of intraclass samples. Moreover, the lack of explicit class prototype modeling often leads to ambiguous decision boundaries. To address these issues, this article proposes a prototype-guided supervised momentum contrastive (PGSMC) learning for hyperspectral cross-domain few-shot classification. PGSMC first designs an asymmetric augmentation module (AAM) to enhance sample diversity by applying distinct augmentation strategies and encoders to the query and key views. Subsequently, a momentum queue (MQ) is employed to store historical key features and their corresponding labels. This mechanism enables smooth updates of class-level momentum prototypes (MPs) and mitigates the limitations imposed by mini-batch training. Finally, an MP contrastive loss is formulated to guide the model toward class-level feature representations, thereby promoting more discriminative decision boundaries. Overall, PGSMC enables query samples to contrast with more representative MPs, enhancing interclass separability and promoting well-defined class boundaries. Extensive experiments on five HSI datasets demonstrate that PGSMC significantly outperforms existing few-shot learning (FSL) methods.]]></description>
+			<pubDate><![CDATA[WED, 12 NOV 2025 09:16:24 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11242220]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>18</endPage>
+			<fileSize>6281</fileSize>
+			<authors><![CDATA[Lingyu Kong;Xudong Sun;Zifei Zhao;Jiahua Zhang;Xiaodi Shang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Parallel Adversarial Domain Adaptation for Cross-Dataset Hyperspectral Image Classification]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11245618]]></link>
+			<description><![CDATA[With the advancement of spectral imaging technology, hyperspectral image (HSI) resources have been rapidly expanding, making cross-dataset HSI classification a critical technique and an inevitable trend for large-scale Earth observation applications. However, most existing approaches transfer from one HSI to another in a supervised way, which limits their ability to leverage multisource HSI information. Therefore, this article proposes an unsupervised cross-dataset HSI classification method based on parallel adversarial domain adaptation (PADA), which learns and integrates task-relevant and domain-invariant knowledge from multisource HSIs to classify a target HSI. Specifically, a source-and-target shared information mining module is designed to mine transferable knowledge from each source HSI. This module employs parallel adversarial learning between a spectral–spatial feature extractor and a task-relevant controller with a domain-invariant discriminator to learn task-relevant and domain-invariant features, thereby mitigating domain shift. Moreover, a source-to-target transferability learning module is proposed to evaluate the cross-dataset transferability of knowledge, which computes a domain correlation score to evaluate interdomain correlation and guide adaptive knowledge transfer, effectively suppressing redundant information and reducing negative transfer caused by low-correlated sources. Finally, a multisource collaborative classification module is developed to accomplish cross-dataset knowledge transfer, which designs a correlation-aware fusion strategy to produce the final classification result by integrating information from each source, ensuring balanced and robust decision-making. Extensive experiments conducted under challenging multisource cross-dataset settings validate the classification performance and the domain extensibility of the proposed method, demonstrating its potential for large-scale Earth observation applications.]]></description>
+			<pubDate><![CDATA[THU, 13 NOV 2025 09:16:33 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11245618]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>4919</fileSize>
+			<authors><![CDATA[Yumo Qie;Jiawei Li;Dunbin Shen;Zhenrong Du;Xiaorui Ma;Jie Wang;Hongyu Wang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Adaptive Feature Recalibration Network for More Accurate Instance Segmentation in Remote Sensing]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11224879]]></link>
+			<description><![CDATA[Accurate instance segmentation in remote sensing imagery is challenged by densely packed, arbitrarily oriented objects. Conventional horizontal-region-based approaches often suffer from feature misalignment, leading to degraded performance. To address this, we propose the Adaptive Feature Recalibration Network (AFRNet), a unified framework that iteratively refines rotated proposals in a coarse-to-fine manner. AFRNet introduces a Deformable Align Region Proposal Network (RPN) to generate geometry-aware oriented proposals, followed by a cascade of refinement stages utilizing Rotated Region of Interest (RoI) Align and stage-specific regressors. To handle angle periodicity and discontinuity, we model oriented boxes as 2-D Gaussian distributions, enabling a robust and continuous formulation for rotation-aware regression. Based on high-quality refined proposals, an orientation-aware mask head further enhances segmentation by producing precise, rotation-aligned instance masks. Furthermore, we integrate AFRNet with the Segment Anything Model (SAM) into a semisupervised framework that uses keypoints derived from oriented bounding boxes (OBBs) as prompts. Despite not requiring ground-truth masks, the resulting OBB-guided SAM delivers competitive segmentation results. Extensive experiments across six remote sensing benchmarks demonstrate that our rotation-aware design achieves state-of-the-art performance in both rotated object detection and instance segmentation, validating its effectiveness in complex aerial imaging scenarios.]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11224879]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>19</endPage>
+			<fileSize>4310</fileSize>
+			<authors><![CDATA[Xiao Yang;Ahmad Sufril Azlan Mohamed;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[SAM-Based Building Change Detection With Distribution-Aware Fourier Adaptation and Edge-Constrained Warping]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11227013]]></link>
+			<description><![CDATA[Building change detection remains challenging for urban development, disaster assessment, and military reconnaissance. While foundation models like segment anything model (SAM) show strong segmentation capability, they exhibit limited performance in building change detection due to the domain gap between natural and remote sensing images. Existing adapter-based fine-tuning methods struggle with the imbalanced distribution of changed buildings, resulting in suboptimal detection of building changes exhibiting sparse distribution, small scale, or weak contrast. Additionally, bi-temporal alignment methods, including optical flow, are vulnerable to background noise interference. To address these limitations, we propose the SAM-based network with distribution-aware Fourier adaptation and edge-constrained warping (FAEWNet) for building change detection. Unlike previous adapters that overlook the imbalanced distribution of changed buildings, our proposed distribution-aware Fourier aggregation (DAFA) adapter not only addresses the domain gap issue but also models the distribution of changed buildings. Furthermore, to mitigate noise interference and misalignment caused by registration errors, we design multiscale aware flow aggregation (MSAFA) module that refines building edge extraction and enhances the perception of changed buildings. The results on the LEVIR-CD, S2Looking, and WHU-CD datasets highlight the effectiveness of FAEWNet. Specifically, FAEWNet achieves the best performance on the LEVIR-CD with 91.29% Rc, 92.41%  $F1$ , and 85.89% IoU. On the S2Looking dataset, our method achieves improvements of 3.09% in Rc, 1.07% in  $F1$ , and 1.23% in IoU compared to the second-best method. On the WHU-CD dataset, it achieves the highest overall performance, with a Rc of 94.20%, an  $F1$  of 94.99%, and an IoU of 90.45%. The code is available at https://github.com/SUPERMAN123000/FAEWNet]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11227013]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>14</endPage>
+			<fileSize>1833</fileSize>
+			<authors><![CDATA[Yun-Cheng Li;Sen Lei;Yi-Tao Zhao;Heng-Chao Li;Jun Li;Antonio Plaza;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Difference Enhancement and Interscale Interactive Fusion Mamba for Remote Sensing Image Change Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11224896]]></link>
+			<description><![CDATA[Recently, Mamba has made significant strides in sequence modeling, with its global receptive field, dynamic weighting strategy, and linear growth in computational complexity. In remote sensing (RS) change detection (CD), several studies have demonstrated that Mambas leverage a unique scanning mechanism to traverse images from various directions, showcasing excellent long-range modeling capabilities. However, as the network depth increases, Mamba often struggles to retain shallow textures and local features effectively. In particular, modern RS images frequently capture complex surface scenes, including seasonal climate variations and densely built environments, making local contextual details crucial for effective CD. Therefore, a difference enhancement and interscale interactive fusion Mamba (DEIF-Mamba) is proposed to alleviate the issue. This entire network framework integrates a convolutional neural network (CNN) and Mamba, utilizing CNN to capture local feature information, while Mamba employs a cross-scanning mechanism to integrate global information. To address the interference caused by mixed texture features and the missed detection of subtle changes in complex scenes, a differential feature enhancement module (DFEM) is proposed to enrich local contextual details and improve feature representation. In addition, we propose an interscale interactive fusion (ISIF) strategy to fully utilize the cross-scale interactive information and minimize information redundancy. Extensive experiments on four CD datasets demonstrate that the proposed DEIF-Mamba achieves an average F1 of 85.87% and shows superior performance compared with other state-of-the-art (SOTA) methods. Code will be available online at: https://github.com/Jyl199904/DEIF-Mamba]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11224896]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>15</endPage>
+			<fileSize>4165</fileSize>
+			<authors><![CDATA[Weiwei Sun;Yuliang Ji;Yumiao Wang;Kai Zhang;Jiangtao Peng;Xiaorun Li;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A General Uncertainty-Guided Bayesian Adaptation Framework for Building Change Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11227137]]></link>
+			<description><![CDATA[Existing deep learning-based building change detection (BCD) methods are often hindered by sample imbalance and imagery noise, which leads to inaccurate predictions, particularly for building edges and minority changed class regions. To overcome these limitations, we propose a novel uncertainty-guided Bayesian adaptation (UBA) framework, designed as a plug-and-play module to enhance existing BCD methods. The UBA framework consists of two core components. First, a local Bayesian adaptation strategy (LBs) pragmatically adapts the output layer of any BCD network, enabling efficient prediction uncertainty estimation and decomposition. We demonstrate that the decomposed aleatoric and epistemic uncertainty terms semantically highlight building edges and minority changed class regions, respectively. Based on this insight, we propose an uncertainty-weighted optimization mechanism (U-Wom) that leverages these uncertainty maps to dynamically reweight the loss function. This mechanism guides the model to focus its learning on these challenging, fine-grained regions. Extensive experiments on several widely used BCD datasets show that the UBA framework consistently and significantly improves the performance of various state-of-the-art (SOTA) methods.]]></description>
+			<pubDate><![CDATA[WED, 05 NOV 2025 09:17:13 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11227137]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>14</endPage>
+			<fileSize>3905</fileSize>
+			<authors><![CDATA[Ziqi Di;Mingyang Zhang;Fenlong Jiang;Yu Zhou;Maoguo Gong;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Hierarchical Prototype Learning via Aggregation-Decomposition for Fine-Grained Geospatial Scene Graph Generation]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11227029]]></link>
+			<description><![CDATA[Geospatial scene graph generation (G-SGG) in remote sensing imagery (RSI) aims to identify triplets <subject, relationship, and object> that reflect interactions among objects on the Earth’s surface. A key challenge in G-SGG is the large intraclass variation of geospatial relationships, which leads to frequent misclassification. To address this, we propose a hierarchical prototype learning network (HPL-Net) via aggregation-decomposition, designed to enhance fine-grained G-SGG by addressing intraclass variation in geospatial relationships. In HPL-Net, hierarchical constraint (HC) of prototype learning, employing a tree structure, is designed to learn discriminative representations of relationship prototypes. In addition, a class-balanced constraint (CC) of instance learning with class-aware margins is introduced to mitigate misclassification caused by imbalanced relationship categories. Extensive experiments demonstrate that our method outperforms state-of-the-art G-SGG models on the satellite-based STAR and drone-based AUG datasets. Specifically, it outperforms the latest models, such as RPCM and LPG, by significant margins of 4.90%/5.32% and 4.52%/4.31% on TMR@1500/2000 and F@50/150, respectively, for the predicate classification (PredCls) task on the STAR and AUG datasets. The code will be available at https://github.com/linlin-dev/HPL-Net]]></description>
+			<pubDate><![CDATA[TUE, 04 NOV 2025 09:16:08 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11227029]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>44765</fileSize>
+			<authors><![CDATA[Linlin Wang;Tingzhu Wang;Junwei Luo;Yansheng Li;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[EGPO: Enhanced Guidance and Pseudo-Label Optimization for Semi-Supervised Semantic Segmentation of Remote Sensing Images]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236415]]></link>
+			<description><![CDATA[Owing to complex remote sensing image features boosting manually labeled costs, semi-supervised semantic segmentation learns from limited labeled and abundant unlabeled data to alleviate this dilemma. However, there are still many challenges in the practical application of this technology, such as incorrect unsupervised information misleading the model and causing errors in pseudo-labels, thereby causing error accumulation. This article proposes a semi-supervised semantic segmentation method for remote sensing images. The enhanced guided learning module we designed uses a label-guided model to predict unlabeled data in the correct direction, enriching ground features and unsupervised information and alleviating the problems of misprediction and consistency regularization failure caused by the lack of labels. At the same time, facing the noise generated during the data augmentation process, our designed unsupervised loss dynamic screening module aims to locate and suppress the noise adaptively. In addition, in the face of inevitable erroneous predictions in pseudo-labels, we design a pixel category selection (PCS) module that produces high-quality and high-confidence pseudo-labels through multistep filtering and dual model fusion. Ultimately, by conducting experiments on the DFC22, iSAID, MER, GID-15, and Vaihingen datasets, we successfully verified the effectiveness of our proposed method. The source code has been made public: https://github.com/Xidian-AIGroup190726/EGPO]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236415]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>13</endPage>
+			<fileSize>5295</fileSize>
+			<authors><![CDATA[Xifeng Xue;Hao Zhu;Xiaotong Li;Jianda Wang;Longsheng Qu;Biao Hou;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[Multimodal Difference Augmentation Learning for Remote Sensing Change Detection]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236418]]></link>
+			<description><![CDATA[Remote sensing change detection (RSCD) plays a crucial role in applications such as environmental monitoring and urban planning. With the emergence of foundational vision-language models like CLIP, there is growing interest in integrating textual information into vision tasks. However, in the RSCD domain, limited efforts have been made to effectively leverage textual cues, and challenges persist in capturing differential features. To address these issues, this study proposes the multimodal difference augmentation learning change detection network (MdaCD) that fully exploits textual information and enhances differential feature learning (DFL). MdaCD introduces a CLIP-guided masking process to direct textual descriptions toward image differences, and a multimodal fusion and difference augmentation process to integrate and refine differential features across modalities. The CLIP-guided masking process applies masking to bitemporal image pairs before generating text prompts, enabling a more targeted analysis of changes. Meanwhile, the multimodal fusion and difference augmentation process computes a fused attention map to integrate visual and textual cues, effectively amplifying relevant differences. By applying difference augmentation functions, the differential features from both visual and textual embeddings are further refined and strengthened. The effectiveness of the proposed MdaCD model is validated through extensive experiments on two public RSCD datasets, where it achieves state-of-the-art performance with IoU scores of 84.88% on LEVIR-CD and 71.96% on SYSU-CD. The code and pretrained models of this work will be publicly available at https://github.com/haoyangofficial/MdaCD]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236418]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>2104</fileSize>
+			<authors><![CDATA[Hao Yang;Zhiyu Jiang;Dandan Ma;Qi Wang;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A Novel Dynamic Warping Fusion (DWF) Method for Full-Waveform Hyperspectral LiDAR Signal Correction and Decomposition]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11237163]]></link>
+			<description><![CDATA[Full-waveform hyperspectral LiDAR (HSL) provides multichannel echo signals that capture both geometric and spectral information. However, the instrument’s optical system introduces challenges like interchannel time-delay effects and multichannel response heterogeneity, leading to uncertainties in HSL waveform parameter extraction and quantitative applications. Therefore, we propose a dynamic warping fusion (DWF) method for HSL signal correction and decomposition. The DWF method incorporates derivative dynamic time warping (DDTW) for multichannel signal alignment and panchromatic band waveform synthesis, eliminating uncertainties in target position extraction. Subsequently, inverse DDTW is applied to generate unique initialization parameters for each channel, reducing the risks of missed detection and oversegmentation. The results suggest that: 1) the DWF method demonstrates excellent decomposition performance on simulated datasets, exhibiting robustness across varying interchannel time-delay levels ( $R^{2}\gt 0.97$  and root-mean-square error (RMSE) <0.24); 2) the synthesized panchromatic band demonstrates superior spatial information extraction capabilities, with an average relative neighbor distance error (RNDE) <2.51%; 3) a new multiband LiDAR spectral similarity index (MLSI) is introduced, showing that spectral curves based on waveform integrated areas are closer to the true spectrum than those based on peak intensities; and 4) performance validation on measured datasets confirms the superiority of DWF over the previous multichannel interconnection waveform decomposition (MIWD) approach, reducing RNDE from 5.11% to 2.27%. The proposed approach leverages waveform shape features for interchannel time-delay correction and waveform decomposition, providing a valuable reference for signal decomposition across various HSL devices and similar data processing tasks.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11237163]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>16</endPage>
+			<fileSize>21750</fileSize>
+			<authors><![CDATA[Yishuo Hao;Zheng Niu;Wang Li;Jie Bai;Li Wang;Kaiyi Bi;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[A Borehole Transient Electromagnetic Method Utilizing Apparent Magnetic Monopoles and Its Applications]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11235965]]></link>
+			<description><![CDATA[The conventional borehole transient electromagnetic method (BTEM) is limited by full-space effects, resulting in considerable errors in the spatial parameters of localized anomalous bodies. To improve the spatial resolutions of the low-resistivity anomalous bodies around a borehole, a modified BTEM method, utilizing a pair of magnetic dipoles to create local magnetic monopoles, is proposed. Based on Maxwell’s diffusion solution, the three-component analytical solution of the transient magnetic field, generated by superposing a pair of spaced and oppositely polarized magnetic dipoles, is derived. Two magnetic monopoles with opposite polarities in the axial and radial directions are created. Compared to a single magnetic dipole source, the response amplitude of the radial component excited by the magnetic monopole source is stronger. Numerical simulations and physical experiments show that the radial component is highly sensitive to the radial and axial distances and azimuthal angle of the low-resistivity anomalous body. This component detects responses at all radial azimuthal angles. The axial component can determine whether the low-resistivity body is located in front of or behind the probe, although with a limited azimuth angle detection ability, which can be supplemented by the radial azimuth angle. Herein, a spatial localization method for a single low-resistivity anomalous body in full space is proposed. This method is applied at an actual mining site to spatially locate and image hidden water hazards. It effectively depicts the distribution of low-resistivity water sources around the borehole. This study provides a novel technical approach for precisely detecting low-resistivity zones in integrated drilling and geophysical prospecting projects, which has significant theoretical significance and practical application value.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11235965]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>16</endPage>
+			<fileSize>11786</fileSize>
+			<authors><![CDATA[Ying Wang;Bo Wang;Shengdong Liu;Yuanbin Zuo;Weiwen Song;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[An Efficient Inversion Method for 3-D Magnetic Surveys Based on Intelligent Anomaly Identification and Adaptive Octree Mesh]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11236456]]></link>
+			<description><![CDATA[Traditional 3-D magnetic inversion methods often rely on global fine meshes when pursuing high precision imaging, leading to inefficient allocation of computational resources, with particularly significant waste in nontarget areas. To overcome this bottleneck, this article proposes a novel adaptive octree-based 3-D magnetic inversion method with an intelligent anomaly focusing mechanism, achieving an organic unity of high precision and efficiency through multistage intelligent control. The proposed method first rapidly completes the initial inversion on a coarse mesh to obtain the overall outline of the subsurface structure. Subsequently, the fuzzy c-means (FCM) clustering algorithm is introduced to automatically identify target regions with significant magnetic anomalies from the coarse solution. Based on this, a multistage octree mesh is constructed within the identified regions to achieve refined discretization of complex geological boundaries. The refined model then serves as a new starting point for high precision inversion. This “coarse inversion, intelligent identification, local refinement, precision inversion” workflow can be iteratively executed on demand to dynamically allocate computational resources. To address the influence of varying mesh scales, a volume-related depth weighting function is adopted, and smooth-focusing regularization is introduced to ensure inversion stability while enhancing the model’s resolution capability. Modeling experiments validate the advantages of our method in terms of both inversion quality and accuracy of the extracted anomaly. We applied this method successfully to magnetic data from a mining area in the Huzhong of the Heilongjiang, validating its efficiency and practicality in complex geological settings and demonstrating its broad application prospects in high precision inversion of large-scale magnetic data.]]></description>
+			<pubDate><![CDATA[MON, 10 NOV 2025 09:17:02 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11236456]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>2179</fileSize>
+			<authors><![CDATA[Xueyan Hu;Tonglin Li;Rongzhe Zhang;Hua Guo;Haoyuan He;Xiaoming Pan;]]></authors>
+		</item>
+		<item>
+			<title><![CDATA[An Attention-GraphSAGE Algorithm for Marine Gravity Anomaly Inversion Using Denoised Photon Point Cloud Data of ICESat-2]]></title>
+			<link><![CDATA[http://ieeexplore.ieee.org/document/11240215]]></link>
+			<description><![CDATA[The Ice, Cloud, and Land Elevation Satellite-2 (ICESat-2) provides abundant ocean satellite altimetry data. Photon point clouds data denoised by the official ATL03 algorithm exhibit insufficient continuity, and classical gravity anomaly inversion algorithms suffer from high computational complexity. To address these issues, we propose a two-step denoising method for ATL03 data to obtain instantaneous sea surface heights (SSHs): photon point clouds data are denoised using the adaptive OPTICS algorithm, followed by secondary denoising using the Linear-Interquartile algorithm. The resulting SSHs demonstrate superior continuity and larger data volume than those of ATL12 data. This article proposes the Attention-GraphSAGE algorithm-a graph neural network (GNN) approach based on neighbor node sampling and self-attention-weighted feature aggregation. An Adam optimizer with  $L2$  regularization is employed for iterative training to achieve nonlinear fitting. The architecture incorporates two-layer neighbor node sampling and aggregation, with residual connections between layers to prevent gradient explosion and preserve original data features. During model training, each input contains  $81\times 81\times 4$  feature values. Nodes consist of shipborne measurement points and surrounding grid points; edges represent connection relationships between shipborne points and first-layer neighbor nodes (grid points), as well as connections between grid points and second-layer nodes (grid points). Edge weights are determined by calculating the correlation coefficient of geoid height between each neighbor node and the shipborne measurement point (using self-attention mechanism). The output corresponds to the difference between shipborne gravity anomaly data and Scripps Institution of Oceanography (SIO) V32.1 gravity anomaly data. The gravity anomaly model inverted utilizing denoised photon with the Attention-GraphSAGE algorithm (AGP-GRA model) demonstrated a correlation coefficient of 0.99 and a standard deviation of 3.36 mGal with shipborne gravity anomaly data. Compared to the model inverted directly utilizing ATL12 data with the same algorithm (AGA-GRA model), this represents a standard deviation reduction of 0.09 mGal. Experiments confirm the algorithm’s effectiveness for gravity anomaly inversion demonstrating with favorable model performance.]]></description>
+			<pubDate><![CDATA[TUE, 11 NOV 2025 09:16:26 -0400]]></pubDate>
+			<pubYear>
+			<![CDATA[2025]]>
+			</pubYear>
+			<guid><![CDATA[http://ieeexplore.ieee.org/document/11240215]]>
+			</guid>
+			<volume>63</volume>
+			<issue>null</issue>
+			<startPage>1</startPage>
+			<endPage>11</endPage>
+			<fileSize>2887</fileSize>
+			<authors><![CDATA[Gaoying Yin;Xin Liu;Shaofeng Bian;Yongjun Jia;Hui Li;Ziqian Huang;Jinyun Guo;]]></authors>
+		</item>
+	</channel>
+</rss>

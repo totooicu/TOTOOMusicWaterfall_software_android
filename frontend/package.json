@@ -1,0 +1,29 @@
+{
+  "name": "paper-summarizer-frontend",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^7.0.1",
+    "ant-design-vue": "next",
+    "axios": "^1.6.7",
+    "d3": "^7.9.0",
+    "d3-cloud": "^1.2.8",
+    "dompurify": "^3.3.0",
+    "echarts": "^6.0.0",
+    "marked": "^17.0.1",
+    "vue": "^3.3.11",
+    "vue-router": "^4.2.5"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.5.2",
+    "eslint": "^8.55.0",
+    "eslint-plugin-vue": "^9.19.2",
+    "vite": "^5.0.8"
+  }
+}
