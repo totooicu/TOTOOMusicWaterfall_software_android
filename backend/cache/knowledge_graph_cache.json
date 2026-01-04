@@ -1,0 +1,129 @@
+{
+  "011b15023f56e7b7b73ef82e199c4447": {
+    "timestamp": "2025-12-23T17:25:33.639142",
+    "data": {
+      "nodes": [
+        {
+          "id": "Corrections to \"Dual-PRF Processing Algorithm for Enhanced Polarimetric Measurements in Weather Radar\"",
+          "type": "Paper",
+          "color": "#FF6B6B"
+        },
+        {
+          "id": "Corrections to \"A Frequency-Domain Iterative Approach for Rapid 3-D Imaging of Large-Scale Magnetic Amplitude Data Affected by Remanence\"",
+          "type": "Paper",
+          "color": "#FF6B6B"
+        },
+        {
+          "id": "Dual-PRF Processing Algorithm",
+          "type": "Method",
+          "color": "#4ECDC4"
+        },
+        {
+          "id": "Frequency-Domain Iterative Approach",
+          "type": "Method",
+          "color": "#4ECDC4"
+        },
+        {
+          "id": "Weather Radar",
+          "type": "Domain",
+          "color": "#45B7D1"
+        },
+        {
+          "id": "Magnetic Amplitude Data Imaging",
+          "type": "Domain",
+          "color": "#45B7D1"
+        },
+        {
+          "id": "David Schvartzman",
+          "type": "Author",
+          "color": "#96CEB4"
+        },
+        {
+          "id": "Dušan Zrnjić",
+          "type": "Author",
+          "color": "#96CEB4"
+        },
+        {
+          "id": "Mei Huang",
+          "type": "Author",
+          "color": "#96CEB4"
+        },
+        {
+          "id": "Langhui Guo",
+          "type": "Author",
+          "color": "#96CEB4"
+        },
+        {
+          "id": "Yatong Cui",
+          "type": "Author",
+          "color": "#96CEB4"
+        }
+      ],
+      "links": [
+        {
+          "source": "Corrections to \"Dual-PRF Processing Algorithm for Enhanced Polarimetric Measurements in Weather Radar\"",
+          "target": "David Schvartzman",
+          "type": "AUTHORED_BY",
+          "weight": 1
+        },
+        {
+          "source": "Corrections to \"Dual-PRF Processing Algorithm for Enhanced Polarimetric Measurements in Weather Radar\"",
+          "target": "Dušan Zrnjić",
+          "type": "AUTHORED_BY",
+          "weight": 1
+        },
+        {
+          "source": "Corrections to \"Dual-PRF Processing Algorithm for Enhanced Polarimetric Measurements in Weather Radar\"",
+          "target": "Weather Radar",
+          "type": "APPLIES_TO",
+          "weight": 1
+        },
+        {
+          "source": "Dual-PRF Processing Algorithm",
+          "target": "Weather Radar",
+          "type": "APPLIES_TO",
+          "weight": 1
+        },
+        {
+          "source": "Corrections to \"A Frequency-Domain Iterative Approach for Rapid 3-D Imaging of Large-Scale Magnetic Amplitude Data Affected by Remanence\"",
+          "target": "Mei Huang",
+          "type": "AUTHORED_BY",
+          "weight": 1
+        },
+        {
+          "source": "Corrections to \"A Frequency-Domain Iterative Approach for Rapid 3-D Imaging of Large-Scale Magnetic Amplitude Data Affected by Remanence\"",
+          "target": "Langhui Guo",
+          "type": "AUTHORED_BY",
+          "weight": 1
+        },
+        {
+          "source": "Corrections to \"A Frequency-Domain Iterative Approach for Rapid 3-D Imaging of Large-Scale Magnetic Amplitude Data Affected by Remanence\"",
+          "target": "Yatong Cui",
+          "type": "AUTHORED_BY",
+          "weight": 1
+        },
+        {
+          "source": "Corrections to \"A Frequency-Domain Iterative Approach for Rapid 3-D Imaging of Large-Scale Magnetic Amplitude Data Affected by Remanence\"",
+          "target": "Magnetic Amplitude Data Imaging",
+          "type": "APPLIES_TO",
+          "weight": 1
+        },
+        {
+          "source": "Frequency-Domain Iterative Approach",
+          "target": "Magnetic Amplitude Data Imaging",
+          "type": "APPLIES_TO",
+          "weight": 1
+        }
+      ],
+      "color_map": {
+        "Paper": "#FF6B6B",
+        "Method": "#4ECDC4",
+        "Domain": "#45B7D1",
+        "Author": "#96CEB4",
+        "Dataset": "#FFEAA7",
+        "Metric": "#DDA0DD",
+        "Challenge": "#98D8C8"
+      }
+    }
+  }
+}

@@ -14,6 +14,8 @@ logger = logging.getLogger('summary_service')
 # 缓存配置
 CACHE_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'cache')
 SUMMARY_CACHE_FILE = os.path.join(CACHE_DIR, 'paper_summaries.json')
+LLM_CACHE_FILE = os.path.join(CACHE_DIR, 'llm_api_cache.json')
+
 
 # 确保缓存目录存在
 os.makedirs(CACHE_DIR, exist_ok=True)
@@ -188,6 +190,16 @@ def answer_question(question: str, context: str, api_key: str) -> str:
         return f"回答问题时出错: {str(e)}"
 
 def call_llm_api(prompt: str, api_key: str) -> str:
+    #查询/cache/call_llm_api.json缓存
+    cache={}
+    try:
+        with open(LLM_CACHE_FILE, 'r', encoding='utf-8') as f:
+            cache = json.load(f)
+            if prompt in cache:
+                return cache[prompt]
+    except FileNotFoundError:
+        cache = {}
+    
     """调用硅基流动API"""
     try:
         logger.info(f"准备调用硅基流动API，API密钥长度: {len(api_key) if api_key else 0}")
@@ -220,6 +232,10 @@ def call_llm_api(prompt: str, api_key: str) -> str:
         
         result = response.json()
         if "choices" in result and len(result["choices"]) > 0:
+            cache[prompt]=result["choices"][0]["message"]["content"]
+            # 写入缓存文件
+            with open(LLM_CACHE_FILE, 'w', encoding='utf-8') as f:
+                json.dump(cache, f, ensure_ascii=False, indent=2)
             return result["choices"][0]["message"]["content"]
         else:
             logger.warning("API返回成功但没有choices字段")
