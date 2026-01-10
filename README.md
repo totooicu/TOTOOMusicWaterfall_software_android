@@ -36,7 +36,7 @@
 2. 确保`.env`文件已正确配置（默认已配置）：
    ```
    # 硅基流动API配置
-   SILICON_FLOW_API_KEY=sk-tehmatwmtgfdzudmpltszecgqzcjlzoegscrapzzfjkwxqkf
+   SILICON_FLOW_API_KEY=YOUR_SILICON_FLOW_API_KEY
    SILICON_FLOW_API_URL=https://api.siliconflow.cn/v1/chat/completions
 
    # RSS配置
@@ -45,11 +45,11 @@
    # 邮箱配置
    SMTP_SERVER=smtp.qq.com
    SMTP_PORT=587
-   SMTP_USER=1134815016@qq.com
-   SMTP_PASSWORD=xlnrvjpxxibubacb
+   SMTP_USER=YOUR_QQ_EMAIL@qq.com
+   SMTP_PASSWORD=YOUR_QQ_EMAIL_AUTH_CODE
 
    # 接收邮箱
-   RECIPIENT_EMAIL=2667657661@qq.com
+   RECIPIENT_EMAIL=YOUR_RECIPIENT_EMAIL
 
    # 系统配置
    LOG_LEVEL=INFO
