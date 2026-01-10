@@ -1,8 +1,8 @@
 <template>
   <a-layout class="min-h-screen">
-    <a-layout-header class="header">
+    <a-layout-header class="header" style="justify-content: center;">
       <div class="logo">论文总结助手</div>
-      <a-menu theme="dark" mode="horizontal" :default-selected-keys="['1']">
+      <a-menu theme="dark" mode="horizontal" :default-selected-keys="['1']" v-show="false">
         <a-menu-item key="1">
           <router-link to="/">论文总结</router-link>
         </a-menu-item>
@@ -21,7 +21,6 @@
       </div>
     </a-layout-content>
     <a-layout-footer class="footer">
-      论文总结助手 ©2023 Created by Trae AI
     </a-layout-footer>
   </a-layout>
 </template>
@@ -44,15 +43,17 @@ export default {
 
 .logo {
   width: 120px;
-  height: 31px;
-  background: rgba(255, 255, 255, 0.2);
+
+
   margin: 0 24px 0 0;
-  float: left;
+  /* 移除float，避免影响居中 */
   color: white;
   display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center; /* 容器内水平+垂直居中 */
   font-weight: bold;
+  font-size: 20px; /* 调大字号，可根据需求改为20px等 */
+  text-align: center; /* 兜底文字居中 */
 }
 
 .content {

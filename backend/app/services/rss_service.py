@@ -104,6 +104,9 @@ def parse_rss(rss_url: str) -> Dict[str, Any]:
     # 构建返回结果
     
     print(f">>>RSS解析成功完成")
+    #按时间排序
+    all_papers.sort(key=lambda x: datetime.strptime(x['pubDate'], '%a, %d %b %Y %H:%M:%S %z'), reverse=True)
+    this_week_papers.sort(key=lambda x: datetime.strptime(x['pubDate'], '%a, %d %b %Y %H:%M:%S %z'), reverse=True)
     return all_papers,this_week_papers
  
 
