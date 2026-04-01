@@ -116,6 +116,7 @@ def generate_summary(rss_content: Dict[str, Any], api_key: str) -> str:
         
         # 如果API调用失败，使用备用方法
         if not new_summary or "API调用失败" in new_summary:
+            
             logger.warning("AI API调用失败，使用备用摘要生成方法")
             new_summary = generate_fallback_summary(papers_to_summarize)
         

@@ -45,7 +45,7 @@ def parse_rss(rss_url: str) -> Dict[str, Any]:
     all_papers=[]
     # 使用带UTC时区的当前时间
     now = datetime.now(timezone.utc)
-    one_week_ago = now - timedelta(days=7)
+    one_week_ago = now - timedelta(days=14)
     print(f">>>开始处理本周论文")
     print(f">>>当前时间(UTC): {now}")
     print(f">>>一周前时间(UTC): {one_week_ago}")

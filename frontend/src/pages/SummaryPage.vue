@@ -297,7 +297,7 @@ export default {
       try {
         const date = new Date(dateStr)
         const now = new Date()
-        const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000)
+        const weekAgo = new Date(now.getTime() - 7 * 24 * 60 * 60 * 1000*2)
         return date >= weekAgo && date <= now
       } catch (e) {
         return false

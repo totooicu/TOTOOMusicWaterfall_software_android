@@ -1,6 +1,6 @@
 from fastapi import APIRouter, Depends, HTTPException, Query
 from app.config.config import get_settings, Settings, update_settings
-from app.services import rss_service, email_service, summary_service, knowledge_graph_service
+from app.services import rss_service, email_service, summary_service, get_rss,knowledge_graph_service
 from typing import List, Dict, Any
 import logging
 
@@ -42,6 +42,7 @@ def update_config(config_data: Dict[str, Any], settings: Settings = Depends(get_
 # 获取RSS内容
 @router.get("/rss", response_model=Dict[str, Any])
 def get_rss_content(settings: Settings = Depends(get_settings)):
+    
     try:
         all_papers, this_week_papers = rss_service.parse_rss(settings.rss_url)
         # 构建符合原有API预期的响应格式
@@ -58,6 +59,7 @@ def get_rss_content(settings: Settings = Depends(get_settings)):
 
 @router.get("/rss/raw", response_model=Dict[str, Any])
 def get_raw_rss_data(settings: Settings = Depends(get_settings)):
+    get_rss.fetch_and_parse_rss("https://ieeexplore.ieee.org/rss/TOC36.XML")
     """获取原始RSS数据（包含所有论文和本周论文）"""
     try:
         # 调用RSS服务解析IEEE RSS源
@@ -83,7 +85,7 @@ def generate_summary(settings: Settings = Depends(get_settings)):
         rss_content_for_summary = {
             "entries": this_week_papers
         }
-        
+        # print(">>>rss_content_for_summary", rss_content_for_summary)
         # 生成总结
         summary = summary_service.generate_summary(rss_content_for_summary, settings.silicon_flow_api_key)
         
