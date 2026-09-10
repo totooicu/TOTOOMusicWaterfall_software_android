@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/llGreenChannel"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:paddingBottom="14dp"
+    android:layout_marginBottom="18dp">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/label_green_channel"
+        android:textColor="@color/rgb_green"
+        android:textSize="13sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="10dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_marginBottom="12dp">
+
+        <SeekBar
+            android:id="@+id/sbGreenLow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="700"
+            android:progress="200"/>
+
+        <SeekBar
+            android:id="@+id/sbGreenMid"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="700"
+            android:progress="350"/>
+
+        <SeekBar
+            android:id="@+id/sbGreenHigh"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:max="700"
+            android:progress="500"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/tvGreenRange"
+            android:text="200-350-500Hz"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:layout_marginTop="4dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="8dp">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/label_calc_model"
+            android:textColor="@color/text_hint"
+            android:textSize="13sp"
+            android:layout_width="70dp"/>
+
+        <Spinner
+            android:id="@+id/spGreenModel"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:text="@string/label_channel_gain"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp"
+            android:layout_width="70dp"/>
+
+        <SeekBar
+            android:id="@+id/sbGreenGain"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:progress="30"/>
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:id="@+id/tvGreenGain"
+            android:text="3.0"
+            android:textColor="@color/text_secondary"
+            android:textSize="12sp"
+            android:fontFamily="monospace"
+            android:layout_width="40dp"
+            android:gravity="right"/>
+
+    </LinearLayout>
+
+</LinearLayout>

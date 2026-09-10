@@ -1,0 +1,63 @@
+<resources>
+    <string name="app_name">totoo音频RGB氛围灯</string>
+    <string name="title_activity_add_book">AddBookActivity</string>
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam in scelerisque sem.</string>
+    <string name="title_activity_word_view">wordView</string>
+
+    <string name="app_title">音频RGB氛围灯</string>
+    <string name="app_tip">Canvas 100层历史色环 · 5种积分计算模型 · 参数自动保存</string>
+
+    <string name="status_ready">就绪</string>
+    <string name="status_playing">音频播放中</string>
+    <string name="status_paused">已暂停</string>
+    <string name="status_mic_on">麦克风已开启</string>
+    <string name="status_mic_off">麦克风已关闭</string>
+    <string name="status_display_on">系统内录已开启</string>
+    <string name="status_display_off">系统内录已关闭</string>
+    <string name="status_file_loaded">音频文件已加载</string>
+    <string name="status_requesting_mic">正在请求麦克风权限...</string>
+    <string name="status_mic_failed">麦克风启动失败</string>
+    <string name="status_permission_denied">已拒绝麦克风权限</string>
+
+    <string name="btn_select_file">选择音频文件</string>
+    <string name="btn_play">播放音频</string>
+    <string name="btn_pause">暂停</string>
+    <string name="btn_mic">麦克风</string>
+    <string name="btn_display">系统内录</string>
+    <string name="btn_save_params">保存参数</string>
+    <string name="btn_edit_params">修改参数</string>
+    <string name="btn_edit_done">完成修改</string>
+
+    <string name="label_no_file">未选择文件</string>
+    <string name="label_noise">环境噪音</string>
+    <string name="label_r">R</string>
+    <string name="label_g">G</string>
+    <string name="label_b">B</string>
+    <string name="label_db">分贝</string>
+    <string name="label_freq">主频</string>
+
+    <string name="label_red_channel">红通道</string>
+    <string name="label_green_channel">绿通道</string>
+    <string name="label_blue_channel">蓝通道</string>
+    <string name="label_calc_model">计算模型</string>
+    <string name="label_channel_gain">通道增益</string>
+    <string name="label_brightness">整体亮度</string>
+    <string name="label_mic_gain">麦克风增益</string>
+    <string name="label_global_settings">全局参数</string>
+    <string name="label_history_size">历史层数</string>
+
+    <string name="model_mean">均值模型 I₁</string>
+    <string name="model_increase">增值模型 I₂</string>
+    <string name="model_decrease">减值模型 I₃</string>
+    <string name="model_mountain">山峰模型 I₄</string>
+    <string name="model_valley">山谷模型 I₅</string>
+
+    <string name="hint_saved">已保存</string>
+    <string name="hint_unsaved">有未保存修改</string>
+
+    <string name="label_spectrum">频率-能量图 (v-d) · 横轴：频率(Hz) · 纵轴：能量幅值</string>
+</resources>

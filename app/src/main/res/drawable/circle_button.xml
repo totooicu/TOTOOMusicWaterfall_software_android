@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+    <!-- res/drawable/circle_button.xml -->
+    <shape xmlns:android="http://schemas.android.com/apk/res/android"
+        android:shape="oval">
+        <solid android:color="#FF5733"/> <!-- 按钮的背景色 -->
+        <size
+            android:width="50dp"
+            android:height="50dp"/> <!-- 按钮的大小 -->
+    </shape>

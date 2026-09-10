@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="20dp"
+        android:weightSum="1">
+
+        <Button
+            android:id="@+id/btnSelectFile"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_select_file"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_blue"
+            android:paddingHorizontal="20dp"
+            android:paddingVertical="10dp"
+            android:layout_marginRight="15dp"/>
+
+        <TextView
+            android:id="@+id/tvFileName"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/label_no_file"
+            android:textColor="@color/text_hint"
+            android:textSize="14sp"
+            android:layout_weight="1"
+            android:maxLines="1"
+            android:ellipsize="end"/>
+
+        <Button
+            android:id="@+id/btnPlay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_play"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_green"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:layout_marginLeft="15dp"
+            android:enabled="false"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="12dp">
+
+        <Button
+            android:id="@+id/btnMic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_mic"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_purple"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:layout_marginRight="8dp"/>
+
+        <Button
+            android:id="@+id/btnSystemAudio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="系统音频"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_cyan"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:layout_marginRight="8dp"/>
+
+        <Button
+            android:id="@+id/btnBluetooth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="蓝牙连接"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_pink"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:layout_marginBottom="12dp">
+
+        <Button
+            android:id="@+id/btnHwMic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="HW麦克风"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_orange"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"
+            android:layout_marginRight="8dp"/>
+
+        <Button
+            android:visibility="gone"
+            android:id="@+id/btnDisplay"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/btn_display"
+            android:textColor="@color/text_primary"
+            android:background="@color/primary_orange"
+            android:paddingHorizontal="16dp"
+            android:paddingVertical="10dp"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:background="@color/bg_track"
+        android:padding="4dp"
+        android:layout_marginBottom="20dp">
+
+        <Button
+            android:id="@+id/btnSpeedMinus25"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:text="-2.5"
+            android:textColor="@color/text_primary"
+            android:background="@color/bg_disabled"
+            android:textSize="12sp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btnSpeedMinus05"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:text="-0.5"
+            android:textColor="@color/text_primary"
+            android:background="@color/bg_disabled"
+            android:textSize="12sp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btnSpeedMinus01"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:text="-0.1"
+            android:textColor="@color/text_primary"
+            android:background="@color/bg_disabled"
+            android:textSize="12sp"
+            android:padding="6dp"/>
+
+        <TextView
+            android:id="@+id/tvSpeed"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:text="1.0x"
+            android:textColor="@color/text_secondary"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:gravity="center"/>
+
+        <Button
+            android:id="@+id/btnSpeedPlus01"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:text="+0.1"
+            android:textColor="@color/text_primary"
+            android:background="@color/bg_disabled"
+            android:textSize="12sp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btnSpeedPlus05"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:text="+0.5"
+            android:textColor="@color/text_primary"
+            android:background="@color/bg_disabled"
+            android:textSize="12sp"
+            android:padding="6dp"/>
+
+        <Button
+            android:id="@+id/btnSpeedPlus25"
+            android:layout_width="42dp"
+            android:layout_height="wrap_content"
+            android:text="+2.5"
+            android:textColor="@color/text_primary"
+            android:background="@color/bg_disabled"
+            android:textSize="12sp"
+            android:padding="6dp"/>
+
+    </LinearLayout>
+
+</LinearLayout>

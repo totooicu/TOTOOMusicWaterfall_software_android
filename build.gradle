@@ -1,0 +1,38 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+buildscript {
+    repositories {
+        mavenLocal()
+        google()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/'
+            allowInsecureProtocol true
+        }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter'
+            allowInsecureProtocol true
+        }
+        mavenCentral()
+
+        maven { url 'https://repo.spring.io/milestone'
+            allowInsecureProtocol true
+        }
+
+//        jcenter()
+        maven { url 'https://maven.aliyun.com/nexus/content/groups/public/' }
+        maven { url 'https://maven.aliyun.com/nexus/content/repositories/jcenter' } // 如果项目需要jcenter的特定包
+
+    }
+
+    dependencies {
+        classpath "com.android.tools.build:gradle:7.0.2"
+
+    }
+}
+
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}
+//externalNativeBuild {
+//    cmake {
+//        version '3.10.2'
+//    }
+//}

@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音频RGB氛围灯</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background: #0a0a0f;
+            color: #fff;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 650px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 8px;
+        }
+
+        .tip {
+            color: #888;
+            margin-bottom: 20px;
+            font-size: 14px;
+        }
+
+        .status-bar {
+            min-height: 24px;
+            margin-bottom: 20px;
+            font-size: 13px;
+            color: #f59e0b;
+            font-family: monospace;
+        }
+
+        .upload-area {
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .upload-btn {
+            padding: 10px 20px;
+            background: #2563eb;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background 0.2s;
+            user-select: none;
+        }
+
+        .upload-btn:hover {
+            background: #1d4ed8;
+        }
+
+        #fileName {
+            color: #aaa;
+            font-size: 14px;
+            max-width: 200px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+
+        .controls {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .controls button {
+            padding: 10px 16px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        #playBtn {
+            background: #10b981;
+        }
+        #playBtn:disabled {
+            background: #374151;
+            cursor: not-allowed;
+        }
+        #playBtn:hover:not(:disabled) {
+            background: #059669;
+        }
+
+        #micBtn {
+            background: #8b5cf6;
+        }
+        #micBtn:hover {
+            background: #7c3aed;
+        }
+        #micBtn.active {
+            background: #dc2626;
+        }
+        #micBtn.active:hover {
+            background: #b91c1c;
+        }
+
+        #displayBtn {
+            background: #f59e0b;
+        }
+        #displayBtn:hover {
+            background: #d97706;
+        }
+        #displayBtn.active {
+            background: #dc2626;
+        }
+        #displayBtn.active:hover {
+            background: #b91c1c;
+        }
+
+        .speed-group {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            background: #1e293b;
+            padding: 4px 6px;
+            border-radius: 8px;
+        }
+        .speed-btn {
+            padding: 6px 8px !important;
+            font-size: 12px !important;
+            background: #334155;
+            min-width: 42px;
+        }
+        .speed-btn:hover {
+            background: #475569;
+        }
+        .speed-text {
+            min-width: 50px;
+            text-align: center;
+            font-size: 13px;
+            font-family: monospace;
+            color: #e2e8f0;
+            margin: 0 4px;
+        }
+
+        .progress-wrap {
+            margin-bottom: 20px;
+        }
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #1e293b;
+            border-radius: 4px;
+            cursor: pointer;
+            position: relative;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+        .progress-fill {
+            height: 100%;
+            width: 0%;
+            background: #3b82f6;
+            border-radius: 4px;
+            pointer-events: none;
+        }
+        .progress-handle {
+            position: absolute;
+            top: 50%;
+            left: 0%;
+            width: 20px;
+            height: 32px;
+            margin-top: -16px;
+            margin-left: -10px;
+            background: #fff;
+            border: 2px solid #3b82f6;
+            border-radius: 4px;
+            cursor: grab;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            z-index: 2;
+            transition: transform 0.1s;
+        }
+        .progress-handle:active {
+            cursor: grabbing;
+            transform: scale(1.08);
+        }
+        .time-row {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 6px;
+            font-family: monospace;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+
+        .light-container {
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .rgb-light {
+            width: 300px;
+            height: 300px;
+            position: relative;
+            border-radius: 50%;
+        }
+
+        #ringCanvas {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            transform: translateZ(0);
+            will-change: transform;
+        }
+
+        .inner-core {
+            position: absolute;
+            border-radius: 50%;
+            background: rgb(0, 0, 0);
+            transition: background 0.08s linear, box-shadow 0.08s linear;
+            transform: translateZ(0);
+        }
+
+        .rgb-values {
+            margin-bottom: 20px;
+            font-family: monospace;
+            font-size: 16px;
+            color: #ccc;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            width: 100%;
+        }
+        .rgb-item {
+            flex: 1;
+            text-align: center;
+            min-width: 0;
+        }
+        .rgb-item span.label-r { color: #f87171; }
+        .rgb-item span.label-g { color: #4ade80; }
+        .rgb-item span.label-b { color: #60a5fa; }
+        .rgb-item span.value {
+            display: inline-block;
+            min-width: 3ch;
+            text-align: right;
+        }
+
+        .spectrum-wrap {
+            margin: 20px 0;
+            position: relative;
+        }
+        .spectrum-title {
+            font-size: 13px;
+            color: #888;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+        #spectrumCanvas {
+            width: 100%;
+            height: 220px;
+            background: #0f172a;
+            border-radius: 8px;
+            display: block;
+        }
+
+        .freq-bars {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            gap: 20px;
+        }
+        .bar-item {
+            flex: 1;
+            text-align: center;
+        }
+        .bar-label {
+            font-size: 12px;
+            color: #888;
+            margin-bottom: 8px;
+        }
+        .bar-track {
+            height: 8px;
+            background: #1f2937;
+            border-radius: 4px;
+            overflow: hidden;
+        }
+        .bar-fill {
+            height: 100%;
+            width: 0%;
+            border-radius: 4px;
+            transition: width 0.08s ease-out;
+        }
+        .bar-fill.low { background: #3b82f6; }
+        .bar-fill.mid { background: #22c55e; }
+        .bar-fill.high { background: #ef4444; }
+
+        .param-panel {
+            margin-top: 25px;
+            padding: 18px;
+            background: #0f172a;
+            border-radius: 10px;
+            text-align: left;
+        }
+        .panel-title {
+            font-size: 14px;
+            color: #e2e8f0;
+            margin-bottom: 15px;
+            font-weight: 500;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .save-btn {
+            padding: 6px 14px;
+            background: #3b82f6;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .save-btn:hover {
+            background: #2563eb;
+        }
+        .save-btn.saved {
+            background: #10b981;
+        }
+        .save-hint {
+            font-size: 11px;
+            color: #94a3b8;
+            margin-left: 8px;
+            font-weight: normal;
+        }
+        .edit-btn {
+            padding: 6px 14px;
+            background: #8b5cf6;
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 12px;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-left: 8px;
+        }
+        .edit-btn:hover {
+            background: #7c3aed;
+        }
+        .edit-btn.editing {
+            background: #f59e0b;
+        }
+        .edit-btn.editing:hover {
+            background: #d97706;
+        }
+        .channel-group.locked,
+        .global-gain.locked {
+            pointer-events: none;
+            opacity: 0.55;
+            filter: grayscale(0.4);
+        }
+        .noise-meter {
+            min-height: 24px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #e2e8f0;
+            font-family: monospace;
+        }
+        .noise-meter span {
+            font-weight: bold;
+        }
+        .noise-meter .quiet { color: #10b981; }
+        .noise-meter .moderate { color: #f59e0b; }
+        .noise-meter .loud { color: #ef4444; }
+        .channel-group {
+            margin-bottom: 18px;
+            padding-bottom: 14px;
+            border-bottom: 1px solid #1e293b;
+        }
+        .channel-group:last-child {
+            margin-bottom: 0;
+            padding-bottom: 0;
+            border-bottom: none;
+        }
+        .channel-name {
+            font-size: 13px;
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+        .channel-name.blue { color: #60a5fa; }
+        .channel-name.green { color: #4ade80; }
+        .channel-name.red { color: #f87171; }
+
+        /* 三滑点轨道（柱子样式） */
+        .triple-slider-wrap {
+            margin-bottom: 12px;
+        }
+        .triple-slider {
+            position: relative;
+            height: 48px;
+            margin: 6px 0;
+            cursor: pointer;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: none;
+        }
+        .ts-track {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 6px;
+            margin-top: -3px;
+            background: #1e293b;
+            border-radius: 3px;
+        }
+        .ts-fill {
+            position: absolute;
+            top: 50%;
+            height: 6px;
+            margin-top: -3px;
+            border-radius: 3px;
+            opacity: 0.35;
+            pointer-events: none;
+        }
+        .ts-handle {
+            position: absolute;
+            top: 50%;
+            width: 18px;
+            height: 44px;
+            margin-top: -22px;
+            margin-left: -9px;
+            border-radius: 4px;
+            background: #fff;
+            border: 2px solid currentColor;
+            cursor: grab;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+            z-index: 2;
+            transition: transform 0.1s;
+        }
+        .ts-handle:active {
+            cursor: grabbing;
+            transform: scale(1.08);
+        }
+        .ts-handle.low { color: #94a3b8; }
+        .ts-handle.mid { color: #f59e0b; }
+        .ts-handle.high { color: #94a3b8; }
+        .ts-labels {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #94a3b8;
+            font-family: monospace;
+        }
+        .ts-value {
+            text-align: center;
+            font-size: 12px;
+            color: #cbd5e1;
+            font-family: monospace;
+            margin-top: 4px;
+        }
+
+        /* 模型选择 */
+        .model-select-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 12px;
+            font-size: 13px;
+            color: #94a3b8;
+        }
+        .model-select-row select {
+            flex: 1;
+            padding: 6px 10px;
+            background: #1e293b;
+            color: #fff;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            font-size: 13px;
+            cursor: pointer;
+        }
+        .model-formula {
+            font-size: 11px;
+            color: #64748b;
+            font-family: monospace;
+            margin-top: 4px;
+            min-height: 16px;
+        }
+
+        /* 增益滑块 */
+        .slider-row {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        .slider-row label {
+            min-width: 60px;
+        }
+        .slider-row input[type="range"] {
+            flex: 1;
+        }
+        .slider-row span {
+            min-width: 50px;
+            text-align: right;
+            font-family: monospace;
+        }
+
+        .global-gain {
+            margin-top: 16px;
+            padding-top: 14px;
+            border-top: 1px solid #1e293b;
+        }
+        .gain-control {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #aaa;
+            font-size: 13px;
+            margin-bottom: 8px;
+        }
+        .gain-control:last-child {
+            margin-bottom: 0;
+        }
+        .gain-control input {
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>音频RGB氛围灯</h1>
+        <p class="tip">Canvas 100层历史色环 · 5种积分计算模型 · 参数自动保存 · 刷新不丢失</p>
+        
+        <div id="statusBar" class="status-bar">就绪</div>
+        <div id="noiseMeter" class="noise-meter">环境噪音: <span id="noiseValue" class="quiet">--</span> dB</div>
+
+        <div class="upload-area">
+            <label for="audioFile" class="upload-btn" id="uploadBtn">选择音频文件</label>
+            <input type="file" id="audioFile" accept="audio/*" hidden>
+            <span id="fileName">未选择文件</span>
+        </div>
+
+        <div class="controls">
+            <button id="playBtn" disabled>播放音频</button>
+            <button id="micBtn">麦克风</button>
+            <button id="displayBtn">系统内录</button>
+            
+            <div class="speed-group">
+                <button class="speed-btn" id="speedMinus01">-0.1</button>
+                <button class="speed-btn" id="speedMinus05">-0.5</button>
+                <button class="speed-btn" id="speedMinus25">-2.5</button>
+                <span class="speed-text" id="speedText">1.0x</span>
+                <button class="speed-btn" id="speedPlus25">+2.5</button>
+                <button class="speed-btn" id="speedPlus05">+0.5</button>
+                <button class="speed-btn" id="speedPlus01">+0.1</button>
+            </div>
+        </div>
+
+        <div class="progress-wrap">
+            <div class="progress-bar" id="progressBar">
+                <div class="progress-fill" id="progressFill"></div>
+                <div class="progress-handle" id="progressHandle"></div>
+            </div>
+            <div class="time-row">
+                <span id="currentTime">00:00</span>
+                <span id="totalTime">00:00</span>
+            </div>
+        </div>
+
+        <div class="light-container">
+            <div class="rgb-light" id="rgbLight">
+                <canvas id="ringCanvas"></canvas>
+                <div class="inner-core" id="innerCore"></div>
+            </div>
+        </div>
+
+        <div class="rgb-values">
+            <div class="rgb-item"><span class="label-r">R</span>: <span class="value" id="rValue">0</span></div>
+            <div class="rgb-item"><span class="label-g">G</span>: <span class="value" id="gValue">0</span></div>
+            <div class="rgb-item"><span class="label-b">B</span>: <span class="value" id="bValue">0</span></div>
+            <div class="rgb-item">分贝: <span class="value" id="dbValue">0.0</span></div>
+            <div class="rgb-item">主频: <span class="value" id="freqValue">0</span>Hz</div>
+        </div>
+
+        <div class="spectrum-wrap">
+            <div class="spectrum-title">频率-能量图 (v-d) · 横轴：频率(Hz) · 纵轴：能量幅值</div>
+            <canvas id="spectrumCanvas"></canvas>
+        </div>
+
+        <div class="freq-bars">
+            <div class="bar-item">
+                <div class="bar-label" id="barLabelB">蓝通道</div>
+                <div class="bar-track"><div id="barB" class="bar-fill low"></div></div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label" id="barLabelG">绿通道</div>
+                <div class="bar-track"><div id="barG" class="bar-fill mid"></div></div>
+            </div>
+            <div class="bar-item">
+                <div class="bar-label" id="barLabelR">红通道</div>
+                <div class="bar-track"><div id="barR" class="bar-fill high"></div></div>
+            </div>
+        </div>
+
+        <div class="param-panel">
+            <div class="panel-title">
+                <span>通道参数调节<span class="save-hint" id="saveHint">已保存</span></span>
+                <span>
+                    <button class="save-btn" id="saveBtn">保存参数</button>
+                    <button class="edit-btn" id="editBtn">修改参数</button>
+                </span>
+            </div>
+
+            <div class="channel-group locked">
+                <div class="channel-name red">红通道</div>
+                <div class="triple-slider-wrap">
+                    <div class="triple-slider" id="redSlider" data-channel="red">
+                        <div class="ts-track"></div>
+                        <div class="ts-fill" style="background:#ef4444;"></div>
+                        <div class="ts-handle low" data-type="low" title="下限 L"></div>
+                        <div class="ts-handle mid" data-type="mid" title="极值点 M"></div>
+                        <div class="ts-handle high" data-type="high" title="上限 R"></div>
+                    </div>
+                    <div class="ts-labels">
+                        <span>0Hz</span>
+                        <span id="redRangeText">300-450-600Hz</span>
+                        <span>700Hz</span>
+                    </div>
+                </div>
+                <div class="model-select-row">
+                    <label>计算模型</label>
+                    <select id="redModel">
+                        <option value="mean">均值模型 I₁</option>
+                        <option value="increase">增值模型 I₂</option>
+                        <option value="decrease">减值模型 I₃</option>
+                        <option value="mountain">山峰模型 I₄</option>
+                        <option value="valley">山谷模型 I₅</option>
+                    </select>
+                </div>
+                <div class="model-formula" id="redFormula"></div>
+                <div class="slider-row">
+                    <label>通道增益</label>
+                    <input type="range" id="redGain" min="0" max="10" value="2.0" step="0.1">
+                    <span id="redGainVal">2.0</span> x
+                </div>
+            </div>
+
+            <div class="channel-group locked">
+                <div class="channel-name green">绿通道</div>
+                <div class="triple-slider-wrap">
+                    <div class="triple-slider" id="greenSlider" data-channel="green">
+                        <div class="ts-track"></div>
+                        <div class="ts-fill" style="background:#22c55e;"></div>
+                        <div class="ts-handle low" data-type="low" title="下限 L"></div>
+                        <div class="ts-handle mid" data-type="mid" title="极值点 M"></div>
+                        <div class="ts-handle high" data-type="high" title="上限 R"></div>
+                    </div>
+                    <div class="ts-labels">
+                        <span>0Hz</span>
+                        <span id="greenRangeText">150-300-450Hz</span>
+                        <span>700Hz</span>
+                    </div>
+                </div>
+                <div class="model-select-row">
+                    <label>计算模型</label>
+                    <select id="greenModel">
+                        <option value="mean">均值模型 I₁</option>
+                        <option value="increase">增值模型 I₂</option>
+                        <option value="decrease">减值模型 I₃</option>
+                        <option value="mountain">山峰模型 I₄</option>
+                        <option value="valley">山谷模型 I₅</option>
+                    </select>
+                </div>
+                <div class="model-formula" id="greenFormula"></div>
+                <div class="slider-row">
+                    <label>通道增益</label>
+                    <input type="range" id="greenGain" min="0" max="10" value="1.0" step="0.1">
+                    <span id="greenGainVal">1.0</span> x
+                </div>
+            </div>
+
+            <div class="channel-group locked">
+                <div class="channel-name blue">蓝通道</div>
+                <div class="triple-slider-wrap">
+                    <div class="triple-slider" id="blueSlider" data-channel="blue">
+                        <div class="ts-track"></div>
+                        <div class="ts-fill" style="background:#3b82f6;"></div>
+                        <div class="ts-handle low" data-type="low" title="下限 L"></div>
+                        <div class="ts-handle mid" data-type="mid" title="极值点 M"></div>
+                        <div class="ts-handle high" data-type="high" title="上限 R"></div>
+                    </div>
+                    <div class="ts-labels">
+                        <span>0Hz</span>
+                        <span id="blueRangeText">0-150-300Hz</span>
+                        <span>700Hz</span>
+                    </div>
+                </div>
+                <div class="model-select-row">
+                    <label>计算模型</label>
+                    <select id="blueModel">
+                        <option value="mean">均值模型 I₁</option>
+                        <option value="increase">增值模型 I₂</option>
+                        <option value="decrease">减值模型 I₃</option>
+                        <option value="mountain">山峰模型 I₄</option>
+                        <option value="valley">山谷模型 I₅</option>
+                    </select>
+                </div>
+                <div class="model-formula" id="blueFormula"></div>
+                <div class="slider-row">
+                    <label>通道增益</label>
+                    <input type="range" id="blueGain" min="0" max="10" value="1.0" step="0.1">
+                    <span id="blueGainVal">1.0</span> x
+                </div>
+            </div>
+
+            <div class="global-gain locked">
+                <div class="gain-control">
+                    <span>整体亮度</span>
+                    <input type="range" id="brightnessSlider" min="0.5" max="8" value="3" step="0.1">
+                    <span id="brightnessValue">3.0x</span>
+                </div>
+                <div class="gain-control">
+                    <span>麦克风增益</span>
+                    <input type="range" id="micGainSlider" min="1" max="40" value="15" step="0.5">
+                    <span id="micGainValue">15x</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const STORAGE_KEY = 'rgb_atmosphere_light_params_v2';
+        const MAX_FREQ = 700;
+
+        const ringCanvas = document.getElementById('ringCanvas');
+        const ringCtx = ringCanvas.getContext('2d');
+        const innerCore = document.getElementById('innerCore');
+        const audioFileInput = document.getElementById('audioFile');
+        const uploadBtn = document.getElementById('uploadBtn');
+        const fileNameSpan = document.getElementById('fileName');
+        const playBtn = document.getElementById('playBtn');
+        const micBtn = document.getElementById('micBtn');
+        const displayBtn = document.getElementById('displayBtn');
+        const statusBar = document.getElementById('statusBar');
+        const progressBar = document.getElementById('progressBar');
+        const progressFill = document.getElementById('progressFill');
+        const progressHandle = document.getElementById('progressHandle');
+        const currentTimeEl = document.getElementById('currentTime');
+        const totalTimeEl = document.getElementById('totalTime');
+        const speedText = document.getElementById('speedText');
+
+        const speedMinus01 = document.getElementById('speedMinus01');
+        const speedMinus05 = document.getElementById('speedMinus05');
+        const speedMinus25 = document.getElementById('speedMinus25');
+        const speedPlus25 = document.getElementById('speedPlus25');
+        const speedPlus05 = document.getElementById('speedPlus05');
+        const speedPlus01 = document.getElementById('speedPlus01');
+
+        const barB = document.getElementById('barB');
+        const barG = document.getElementById('barG');
+        const barR = document.getElementById('barR');
+        const barLabelB = document.getElementById('barLabelB');
+        const barLabelG = document.getElementById('barLabelG');
+        const barLabelR = document.getElementById('barLabelR');
+        const rValue = document.getElementById('rValue');
+        const gValue = document.getElementById('gValue');
+        const bValue = document.getElementById('bValue');
+        const dbValue = document.getElementById('dbValue');
+        const freqValue = document.getElementById('freqValue');
+        const spectrumCanvas = document.getElementById('spectrumCanvas');
+        const ctx = spectrumCanvas.getContext('2d');
+
+        const brightnessSlider = document.getElementById('brightnessSlider');
+        const micGainSlider = document.getElementById('micGainSlider');
+        const saveBtn = document.getElementById('saveBtn');
+        const saveHint = document.getElementById('saveHint');
+        const editBtn = document.getElementById('editBtn');
+        const noiseMeter = document.getElementById('noiseMeter');
+        const noiseValue = document.getElementById('noiseValue');
+
+        const audio = new Audio();
+        let audioContext = null;
+        let analyser = null;
+        let audioSource = null;
+        let micSource = null;
+        let displaySource = null;
+        let micStream = null;
+        let displayStream = null;
+        let micGainNode = null;
+        let frequencyData = null;
+        let timeData = null;
+        let animationId = null;
+        let isMicActive = false;
+        let isDisplayActive = false;
+        let playbackRate = 1.0;
+        let isDraggingProgress = false;
+        let isEditingParams = false;
+        let dragState = { triple: null, progress: false };
+
+        let lastR = 0, lastG = 0, lastB = 0;
+        const smoothFactor = 0.65;
+        let brightnessGain = 3.0;
+        let micGainAmount = 15;
+
+        const RING_COUNT = 100;
+        const ringHistory = new Array(RING_COUNT).fill(null).map(() => ({ r: 0, g: 0, b: 0 }));
+        let ringHead = 0;
+
+        const coreRadiusRatio = 0.5;
+        const maxRadiusRatio = 1.5;
+        const containerSize = 300;
+
+        const MODEL_NAMES = {
+            mean: '均值模型 I₁',
+            increase: '增值模型 I₂',
+            decrease: '减值模型 I₃',
+            mountain: '山峰模型 I₄',
+            valley: '山谷模型 I₅'
+        };
+
+        const MODEL_FORMULAS = {
+            mean: 'I₁(L,R) = ∫[L,R] f(v) dv / (R-L)',
+            increase: 'I₂(L,R) = ∫[L,R] f(v)(v-L) dv / (R-L)²',
+            decrease: 'I₃(L,R) = ∫[L,R] f(v)(R-v) dv / (R-L)²',
+            mountain: 'I₄(L,M,R) = I₂(L,M) + I₃(M,R)',
+            valley: 'I₅(L,M,R) = I₃(L,M) + I₂(M,R)'
+        };
+
+        let channelParams = {
+            red: { low: 300, mid: 450, high: 600, gain: 2.0, model: 'mountain' },
+            green: { low: 150, mid: 300, high: 450, gain: 1.0, model: 'mountain' },
+            blue: { low: 0, mid: 150, high: 300, gain: 1.0, model: 'decrease' }
+        };
+
+        // 保存参数到本地存储
+        function saveParams() {
+            const params = {
+                channelParams: channelParams,
+                brightnessGain: brightnessGain,
+                micGainAmount: micGainAmount,
+                playbackRate: playbackRate
+            };
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(params));
+            if (saveHint) {
+                saveHint.textContent = '已保存';
+                saveHint.style.color = '#10b981';
+            }
+            if (saveBtn) {
+                saveBtn.textContent = '保存参数';
+                saveBtn.classList.add('saved');
+                setTimeout(() => saveBtn.classList.remove('saved'), 800);
+            }
+        }
+
+        function markUnsaved() {
+            if (saveHint) {
+                saveHint.textContent = '有未保存修改';
+                saveHint.style.color = '#f59e0b';
+            }
+        }
+
+        function setParamsEditable(editable) {
+            isEditingParams = editable;
+            document.querySelectorAll('.channel-group, .global-gain').forEach(el => {
+                if (editable) el.classList.remove('locked');
+                else el.classList.add('locked');
+            });
+            if (editBtn) {
+                editBtn.textContent = editable ? '完成修改' : '修改参数';
+                editBtn.classList.toggle('editing', editable);
+            }
+        }
+
+        // 把参数同步到UI控件
+        function updateParamsUI() {
+            ['red', 'green', 'blue'].forEach(ch => {
+                const p = channelParams[ch];
+                document.getElementById(`${ch}Gain`).value = p.gain;
+                document.getElementById(`${ch}GainVal`).textContent = p.gain;
+                document.getElementById(`${ch}Model`).value = p.model;
+                document.getElementById(`${ch}Formula`).textContent = MODEL_FORMULAS[p.model];
+                updateTripleSlider(ch);
+            });
+
+            brightnessSlider.value = brightnessGain;
+            document.getElementById('brightnessValue').textContent = brightnessGain.toFixed(1) + 'x';
+            micGainSlider.value = micGainAmount;
+            document.getElementById('micGainValue').textContent = micGainAmount + 'x';
+            if (micGainNode) micGainNode.gain.value = micGainAmount;
+
+            speedText.textContent = playbackRate.toFixed(1) + 'x';
+            audio.playbackRate = playbackRate;
+            updateBarLabels();
+        }
+
+        // 加载本地保存的参数
+        function loadParams() {
+            const saved = localStorage.getItem(STORAGE_KEY);
+            if (!saved) return;
+            try {
+                const params = JSON.parse(saved);
+                if (params.channelParams) {
+                    ['red', 'green', 'blue'].forEach(ch => {
+                        if (params.channelParams[ch]) Object.assign(channelParams[ch], params.channelParams[ch]);
+                    });
+                }
+                if (typeof params.brightnessGain === 'number') brightnessGain = params.brightnessGain;
+                if (typeof params.micGainAmount === 'number') micGainAmount = params.micGainAmount;
+                if (typeof params.playbackRate === 'number') playbackRate = params.playbackRate;
+                
+                updateParamsUI();
+            } catch (e) {
+                console.error('参数加载失败', e);
+            }
+        }
+
+        function initRingCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            ringCanvas.width = containerSize * dpr;
+            ringCanvas.height = containerSize * dpr;
+            ringCtx.scale(dpr, dpr);
+
+            const baseRadius = containerSize / (2 * maxRadiusRatio);
+            const coreDiameter = 2 * baseRadius * coreRadiusRatio;
+            const coreOffset = (containerSize - coreDiameter) / 2;
+            innerCore.style.width = coreDiameter + 'px';
+            innerCore.style.height = coreDiameter + 'px';
+            innerCore.style.left = coreOffset + 'px';
+            innerCore.style.top = coreOffset + 'px';
+        }
+
+        function drawRings() {
+            const center = containerSize / 2;
+            const baseRadius = containerSize / (2 * maxRadiusRatio);
+            const ringStep = (maxRadiusRatio - coreRadiusRatio) / RING_COUNT;
+
+            ringCtx.clearRect(0, 0, containerSize, containerSize);
+            ringCtx.lineWidth = baseRadius * ringStep;
+
+            for (let i = 0; i < RING_COUNT; i++) {
+                const historyIndex = (ringHead - i + RING_COUNT) % RING_COUNT;
+                const color = ringHistory[historyIndex];
+                const radius = baseRadius * (coreRadiusRatio + (i + 0.5) * ringStep);
+
+                ringCtx.beginPath();
+                ringCtx.arc(center, center, radius, 0, Math.PI * 2);
+                ringCtx.strokeStyle = `rgb(${color.r}, ${color.g}, ${color.b})`;
+                ringCtx.stroke();
+            }
+        }
+
+        function setStatus(text, type = 'info') {
+            statusBar.textContent = text;
+            statusBar.style.color = type === 'error' ? '#ef4444' : type === 'success' ? '#10b981' : '#f59e0b';
+        }
+
+        function initCanvas() {
+            const dpr = window.devicePixelRatio || 1;
+            const rect = spectrumCanvas.getBoundingClientRect();
+            spectrumCanvas.width = rect.width * dpr;
+            spectrumCanvas.height = rect.height * dpr;
+            ctx.scale(dpr, dpr);
+        }
+        window.addEventListener('resize', () => {
+            initCanvas();
+            initRingCanvas();
+        });
+
+        // 五种积分模型计算
+        function calcModel(data, iL, iM, iR, model) {
+            // 保证索引合法
+            iL = Math.max(0, Math.min(data.length - 1, Math.floor(iL)));
+            iM = Math.max(iL, Math.min(data.length - 1, Math.floor(iM)));
+            iR = Math.max(iM, Math.min(data.length - 1, Math.floor(iR)));
+
+            const N = iR - iL;
+            if (N <= 0) return 0;
+
+            let value = 0;
+            switch (model) {
+                case 'mean': {
+                    for (let i = iL; i < iR; i++) value += data[i];
+                    return value / N;
+                }
+                case 'increase': {
+                    for (let i = iL; i < iR; i++) value += data[i] * (i - iL);
+                    return value / (N * N);
+                }
+                case 'decrease': {
+                    for (let i = iL; i < iR; i++) value += data[i] * (iR - i);
+                    return value / (N * N);
+                }
+                case 'mountain': {
+                    const N1 = iM - iL;
+                    const N2 = iR - iM;
+                    let v1 = 0, v2 = 0;
+                    for (let i = iL; i < iM; i++) v1 += data[i] * (i - iL);
+                    for (let i = iM; i < iR; i++) v2 += data[i] * (iR - i);
+                    return (N1 > 0 ? v1 / (N1 * N1) : 0) + (N2 > 0 ? v2 / (N2 * N2) : 0);
+                }
+                case 'valley': {
+                    const N1 = iM - iL;
+                    const N2 = iR - iM;
+                    let v1 = 0, v2 = 0;
+                    for (let i = iL; i < iM; i++) v1 += data[i] * (iM - i);
+                    for (let i = iM; i < iR; i++) v2 += data[i] * (i - iM);
+                    return (N1 > 0 ? v1 / (N1 * N1) : 0) + (N2 > 0 ? v2 / (N2 * N2) : 0);
+                }
+                default:
+                    return 0;
+            }
+        }
+
+        // 根据当前通道所选模型计算该频率的权重
+        function getModelWeight(v, p) {
+            if (v < p.low || v > p.high) return 0;
+            switch (p.model) {
+                case 'mean':
+                    return 1;
+                case 'increase':
+                    return (v - p.low) / Math.max(1, p.high - p.low);
+                case 'decrease':
+                    return (p.high - v) / Math.max(1, p.high - p.low);
+                case 'mountain':
+                    if (v <= p.mid) return (v - p.low) / Math.max(1, p.mid - p.low);
+                    return (p.high - v) / Math.max(1, p.high - p.mid);
+                case 'valley':
+                    if (v <= p.mid) return (p.mid - v) / Math.max(1, p.mid - p.low);
+                    return (v - p.mid) / Math.max(1, p.high - p.mid);
+                default:
+                    return 0;
+            }
+        }
+
+        // 频谱条颜色用（按所选模型权重着色）
+        function getFreqColor(v) {
+            return {
+                r: getModelWeight(v, channelParams.red),
+                g: getModelWeight(v, channelParams.green),
+                b: getModelWeight(v, channelParams.blue)
+            };
+        }
+
+        // 三滑点轨道（Pointer Events，同时支持鼠标与触摸）
+        function initTripleSliders() {
+            ['red', 'green', 'blue'].forEach(ch => {
+                const slider = document.getElementById(`${ch}Slider`);
+
+                const getValueFromX = (clientX) => {
+                    const rect = slider.getBoundingClientRect();
+                    let pct = (clientX - rect.left) / rect.width;
+                    pct = Math.max(0, Math.min(1, pct));
+                    return Math.round(pct * MAX_FREQ);
+                };
+
+                const updateFromDrag = (clientX) => {
+                    const state = dragState.triple;
+                    if (!state || state.channel !== ch) return;
+                    const p = channelParams[ch];
+                    let val = getValueFromX(clientX);
+
+                    if (state.type === 'low') {
+                        val = Math.min(val, p.mid - 10);
+                        p.low = Math.max(0, val);
+                    } else if (state.type === 'mid') {
+                        val = Math.max(val, p.low + 5);
+                        val = Math.min(val, p.high - 5);
+                        p.mid = val;
+                    } else if (state.type === 'high') {
+                        val = Math.max(val, p.mid + 10);
+                        p.high = Math.min(MAX_FREQ, val);
+                    }
+                    updateTripleSlider(ch);
+                    updateBarLabels();
+                    markUnsaved();
+                };
+
+                const endDrag = (e) => {
+                    if (!dragState.triple || dragState.triple.channel !== ch) return;
+                    dragState.triple = null;
+                    try { slider.releasePointerCapture(e.pointerId); } catch(err) {}
+                };
+
+                slider.addEventListener('pointerdown', (e) => {
+                    if (!isEditingParams) return;
+                    if (e.button !== 0 && e.pointerType === 'mouse') return;
+                    e.preventDefault();
+
+                    const isHandle = e.target.classList.contains('ts-handle');
+                    let type = null;
+                    if (isHandle) {
+                        type = e.target.dataset.type;
+                    } else {
+                        const val = getValueFromX(e.clientX);
+                        const p = channelParams[ch];
+                        const dLow = Math.abs(val - p.low);
+                        const dMid = Math.abs(val - p.mid);
+                        const dHigh = Math.abs(val - p.high);
+                        if (dLow <= dMid && dLow <= dHigh) type = 'low';
+                        else if (dMid <= dLow && dMid <= dHigh) type = 'mid';
+                        else type = 'high';
+                    }
+
+                    dragState.triple = { channel: ch, type };
+                    try { slider.setPointerCapture(e.pointerId); } catch(err) {}
+                    updateFromDrag(e.clientX);
+                });
+
+                slider.addEventListener('pointermove', (e) => {
+                    if (!dragState.triple || dragState.triple.channel !== ch) return;
+                    e.preventDefault();
+                    updateFromDrag(e.clientX);
+                });
+
+                slider.addEventListener('pointerup', endDrag);
+                slider.addEventListener('pointercancel', endDrag);
+                slider.addEventListener('pointerleave', (e) => {
+                    if (slider.hasPointerCapture(e.pointerId)) return;
+                    endDrag(e);
+                });
+            });
+        }
+
+        function updateTripleSlider(ch) {
+            const slider = document.getElementById(`${ch}Slider`);
+            const p = channelParams[ch];
+            const handles = {
+                low: slider.querySelector('.ts-handle.low'),
+                mid: slider.querySelector('.ts-handle.mid'),
+                high: slider.querySelector('.ts-handle.high')
+            };
+            const fill = slider.querySelector('.ts-fill');
+
+            handles.low.style.left = `${(p.low / MAX_FREQ) * 100}%`;
+            handles.mid.style.left = `${(p.mid / MAX_FREQ) * 100}%`;
+            handles.high.style.left = `${(p.high / MAX_FREQ) * 100}%`;
+
+            fill.style.left = `${(p.low / MAX_FREQ) * 100}%`;
+            fill.style.width = `${((p.high - p.low) / MAX_FREQ) * 100}%`;
+
+            document.getElementById(`${ch}RangeText`).textContent = `${p.low}-${p.mid}-${p.high}Hz`;
+        }
+
+        function bindControls() {
+            ['red', 'green', 'blue'].forEach(ch => {
+                document.getElementById(`${ch}Model`).addEventListener('change', (e) => {
+                    channelParams[ch].model = e.target.value;
+                    document.getElementById(`${ch}Formula`).textContent = MODEL_FORMULAS[e.target.value];
+                    markUnsaved();
+                    updateBarLabels();
+                });
+                document.getElementById(`${ch}Gain`).addEventListener('input', (e) => {
+                    channelParams[ch].gain = parseFloat(e.target.value);
+                    document.getElementById(`${ch}GainVal`).textContent = e.target.value;
+                    markUnsaved();
+                });
+            });
+
+            brightnessSlider.addEventListener('input', e => {
+                brightnessGain = parseFloat(e.target.value);
+                document.getElementById('brightnessValue').textContent = brightnessGain.toFixed(1) + 'x';
+                markUnsaved();
+            });
+            micGainSlider.addEventListener('input', e => {
+                micGainAmount = parseFloat(e.target.value);
+                document.getElementById('micGainValue').textContent = micGainAmount + 'x';
+                if (micGainNode) micGainNode.gain.value = micGainAmount;
+                markUnsaved();
+            });
+
+            saveBtn.addEventListener('click', () => {
+                saveParams();
+            });
+            editBtn.addEventListener('click', () => {
+                setParamsEditable(!isEditingParams);
+            });
+        }
+
+        function updateBarLabels() {
+            const pR = channelParams.red;
+            const pG = channelParams.green;
+            const pB = channelParams.blue;
+            barLabelR.textContent = `红通道 ${pR.low}-${pR.mid}-${pR.high}Hz · ${MODEL_NAMES[pR.model]}`;
+            barLabelG.textContent = `绿通道 ${pG.low}-${pG.mid}-${pG.high}Hz · ${MODEL_NAMES[pG.model]}`;
+            barLabelB.textContent = `蓝通道 ${pB.low}-${pB.mid}-${pB.high}Hz · ${MODEL_NAMES[pB.model]}`;
+        }
+
+        function updateSpeed() {
+            audio.playbackRate = playbackRate;
+            speedText.textContent = playbackRate.toFixed(1) + 'x';
+            markUnsaved();
+        }
+        speedMinus01.addEventListener('click', () => {
+            playbackRate = Math.max(0.5, playbackRate - 0.1);
+            updateSpeed();
+        });
+        speedMinus05.addEventListener('click', () => {
+            playbackRate = Math.max(0.5, playbackRate - 0.5);
+            updateSpeed();
+        });
+        speedMinus25.addEventListener('click', () => {
+            playbackRate = 0.5;
+            updateSpeed();
+        });
+        speedPlus01.addEventListener('click', () => {
+            playbackRate = Math.min(2.5, playbackRate + 0.1);
+            updateSpeed();
+        });
+        speedPlus05.addEventListener('click', () => {
+            playbackRate = Math.min(2.5, playbackRate + 0.5);
+            updateSpeed();
+        });
+        speedPlus25.addEventListener('click', () => {
+            playbackRate = 2.5;
+            updateSpeed();
+        });
+
+        function setProgressByEvent(e) {
+            if (isMicActive || isDisplayActive || !audio.duration) return;
+            const rect = progressBar.getBoundingClientRect();
+            let percent = (e.clientX - rect.left) / rect.width;
+            percent = Math.max(0, Math.min(1, percent));
+            audio.currentTime = percent * audio.duration;
+            progressFill.style.width = (percent * 100) + '%';
+            progressHandle.style.left = (percent * 100) + '%';
+            currentTimeEl.textContent = formatTime(audio.currentTime);
+        }
+
+        const endProgressDrag = (e) => {
+            dragState.progress = false;
+            isDraggingProgress = false;
+            try { progressBar.releasePointerCapture(e.pointerId); } catch(err) {}
+        };
+
+        progressBar.addEventListener('pointerdown', (e) => {
+            if (e.button !== 0 && e.pointerType === 'mouse') return;
+            if (isMicActive || isDisplayActive || !audio.duration) return;
+            e.preventDefault();
+            dragState.progress = true;
+            isDraggingProgress = true;
+            try { progressBar.setPointerCapture(e.pointerId); } catch(err) {}
+            setProgressByEvent(e);
+        });
+        progressBar.addEventListener('pointermove', (e) => {
+            if (!dragState.progress) return;
+            e.preventDefault();
+            setProgressByEvent(e);
+        });
+        progressBar.addEventListener('pointerup', endProgressDrag);
+        progressBar.addEventListener('pointercancel', endProgressDrag);
+        progressBar.addEventListener('pointerleave', (e) => {
+            if (progressBar.hasPointerCapture(e.pointerId)) return;
+            endProgressDrag(e);
+        });
+
+        function disconnectAllSources() {
+            if (audioSource) {
+                try { audioSource.disconnect(); } catch(e) {}
+            }
+            if (micSource) {
+                try { micSource.disconnect(); } catch(e) {}
+                micSource = null;
+            }
+            if (displaySource) {
+                try { displaySource.disconnect(); } catch(e) {}
+                displaySource = null;
+            }
+        }
+
+        function stopAllStreams() {
+            if (micStream) {
+                micStream.getTracks().forEach(track => track.stop());
+                micStream = null;
+            }
+            if (displayStream) {
+                displayStream.getTracks().forEach(track => track.stop());
+                displayStream = null;
+            }
+            if (micGainNode) {
+                try { micGainNode.disconnect(); } catch(e) {}
+                micGainNode = null;
+            }
+            isMicActive = false;
+            isDisplayActive = false;
+            micBtn.classList.remove('active');
+            displayBtn.classList.remove('active');
+        }
+
+        function initAudioContext() {
+            if (!audioContext) {
+                audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                analyser = audioContext.createAnalyser();
+                analyser.fftSize = 2048;
+                analyser.smoothingTimeConstant = 0.75;
+                analyser.connect(audioContext.destination);
+                frequencyData = new Uint8Array(analyser.frequencyBinCount);
+                timeData = new Uint8Array(analyser.fftSize);
+            }
+            if (audioContext.state === 'suspended') {
+                audioContext.resume();
+            }
+        }
+
+        function ensureAudioSourceConnected() {
+            initAudioContext();
+            if (!audioSource) {
+                audioSource = audioContext.createMediaElementSource(audio);
+            }
+            disconnectAllSources();
+            audioSource.connect(analyser);
+        }
+
+        async function toggleDisplayAudio() {
+            if (isDisplayActive) {
+                disconnectAllSources();
+                stopAllStreams();
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                resetLight();
+                setStatus('系统内录已关闭');
+                return;
+            }
+
+            if (!navigator.mediaDevices || !navigator.mediaDevices.getDisplayMedia) {
+                setStatus('当前浏览器不支持系统内录', 'error');
+                return;
+            }
+
+            try {
+                setStatus('正在请求屏幕共享权限...');
+                
+                if (!audio.paused) audio.pause();
+                playBtn.textContent = '播放音频';
+                
+                disconnectAllSources();
+                stopAllStreams();
+                initAudioContext();
+
+                displayStream = await navigator.mediaDevices.getDisplayMedia({
+                    video: true,
+                    audio: true
+                });
+
+                const audioTracks = displayStream.getAudioTracks();
+                if (audioTracks.length === 0) {
+                    displayStream.getTracks().forEach(t => t.stop());
+                    displayStream = null;
+                    setStatus('未捕获到系统音频，请选择带音频的共享目标', 'error');
+                    return;
+                }
+
+                const audioStream = new MediaStream(audioTracks);
+                displaySource = audioContext.createMediaStreamSource(audioStream);
+                displaySource.connect(analyser);
+
+                displayStream.getVideoTracks()[0].addEventListener('ended', () => {
+                    disconnectAllSources();
+                    stopAllStreams();
+                    cancelAnimationFrame(animationId);
+                    animationId = null;
+                    resetLight();
+                    setStatus('屏幕共享已结束');
+                });
+
+                isDisplayActive = true;
+                displayBtn.classList.add('active');
+                setStatus('系统内录已开启', 'success');
+
+                if (!animationId) {
+                    initCanvas();
+                    renderLoop();
+                }
+            } catch (err) {
+                if (err.name !== 'NotAllowedError') {
+                    setStatus('系统内录启动失败：' + err.message, 'error');
+                } else {
+                    setStatus('已拒绝屏幕共享权限');
+                }
+            }
+        }
+
+        async function toggleMic() {
+            if (isMicActive) {
+                disconnectAllSources();
+                stopAllStreams();
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                resetLight();
+                setStatus('麦克风已关闭');
+                return;
+            }
+
+            try {
+                setStatus('正在请求麦克风权限...');
+                
+                if (!audio.paused) audio.pause();
+                playBtn.textContent = '播放音频';
+                
+                disconnectAllSources();
+                stopAllStreams();
+                initAudioContext();
+
+                micStream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                micSource = audioContext.createMediaStreamSource(micStream);
+                micGainNode = audioContext.createGain();
+                micGainNode.gain.value = micGainAmount;
+                micSource.connect(micGainNode);
+                micGainNode.connect(analyser);
+
+                isMicActive = true;
+                micBtn.classList.add('active');
+                setStatus('麦克风已开启', 'success');
+
+                if (!animationId) {
+                    initCanvas();
+                    renderLoop();
+                }
+            } catch (err) {
+                setStatus('麦克风启动失败：' + err.message, 'error');
+            }
+        }
+
+        uploadBtn.addEventListener('click', () => {
+            audioFileInput.value = '';
+        });
+
+        audioFileInput.addEventListener('change', (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+
+            if (!audio.paused) {
+                audio.pause();
+                playBtn.textContent = '播放音频';
+            }
+
+            fileNameSpan.textContent = file.name;
+
+            if (audio.src) {
+                URL.revokeObjectURL(audio.src);
+            }
+
+            audio.src = URL.createObjectURL(file);
+            audio.load();
+
+            audio.addEventListener('loadedmetadata', () => {
+                playBtn.disabled = false;
+                totalTimeEl.textContent = formatTime(audio.duration);
+                setStatus('音频文件已加载', 'success');
+            }, { once: true });
+
+            audio.addEventListener('ended', () => {
+                playBtn.textContent = '播放音频';
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                resetLight();
+            }, { once: true });
+        });
+
+        playBtn.addEventListener('click', async () => {
+            if (audio.paused) {
+                stopAllStreams();
+                ensureAudioSourceConnected();
+                
+                try {
+                    await audio.play();
+                    playBtn.textContent = '暂停';
+                    setStatus('音频播放中', 'success');
+                    if (!animationId) {
+                        initCanvas();
+                        renderLoop();
+                    }
+                } catch (err) {
+                    setStatus('播放失败：' + err.message, 'error');
+                }
+            } else {
+                audio.pause();
+                playBtn.textContent = '播放音频';
+                cancelAnimationFrame(animationId);
+                animationId = null;
+                setStatus('已暂停');
+            }
+        });
+
+        micBtn.addEventListener('click', toggleMic);
+        displayBtn.addEventListener('click', toggleDisplayAudio);
+
+        function drawSpectrumMarkers() {
+            const w = spectrumCanvas.clientWidth;
+            const h = spectrumCanvas.clientHeight;
+            const markers = [
+                { ch: 'red', color: 'rgba(239, 68, 68, 0.35)' },
+                { ch: 'green', color: 'rgba(34, 197, 94, 0.35)' },
+                { ch: 'blue', color: 'rgba(59, 130, 246, 0.35)' }
+            ];
+
+            markers.forEach(({ ch, color }) => {
+                const p = channelParams[ch];
+                ctx.fillStyle = color;
+                const xL = (p.low / MAX_FREQ) * w;
+                const xR = (p.high / MAX_FREQ) * w;
+                ctx.fillRect(xL, 0, xR - xL, h);
+
+                ctx.strokeStyle = color.replace('0.35', '0.9');
+                ctx.lineWidth = 1;
+                [p.low, p.mid, p.high].forEach(freq => {
+                    const x = (freq / MAX_FREQ) * w;
+                    ctx.beginPath();
+                    ctx.moveTo(x, 0);
+                    ctx.lineTo(x, h);
+                    ctx.stroke();
+                });
+            });
+        }
+
+        function drawSpectrum(maxBin, freqPerBin) {
+            const w = spectrumCanvas.clientWidth;
+            const h = spectrumCanvas.clientHeight;
+
+            ctx.clearRect(0, 0, w, h);
+            drawSpectrumMarkers();
+
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            [0, 100, 200, 300, 400, 500, 600, 700].forEach(freq => {
+                const x = (freq / MAX_FREQ) * w;
+                ctx.beginPath();
+                ctx.moveTo(x, 0);
+                ctx.lineTo(x, h);
+                ctx.stroke();
+                ctx.fillStyle = '#64748b';
+                ctx.font = '11px monospace';
+                ctx.textAlign = 'center';
+                ctx.fillText(freq, x, h - 4);
+            });
+
+            const barWidth = w / maxBin;
+            for (let i = 0; i < maxBin; i++) {
+                const v = i * freqPerBin;
+                const energy = frequencyData[i];
+                const barHeight = (energy / 255) * h;
+                const x = i * barWidth;
+                const y = h - barHeight;
+
+                const color = getFreqColor(v);
+                const r = Math.round(color.r * 255);
+                const g = Math.round(color.g * 255);
+                const b = Math.round(color.b * 255);
+
+                ctx.fillStyle = `rgb(${r}, ${g}, ${b})`;
+                ctx.fillRect(x, y, barWidth - 1, barHeight);
+            }
+        }
+
+        function renderLoop() {
+            animationId = requestAnimationFrame(renderLoop);
+            analyser.getByteFrequencyData(frequencyData);
+            analyser.getByteTimeDomainData(timeData);
+
+            const sampleRate = audioContext.sampleRate;
+            const freqPerBin = sampleRate / analyser.fftSize;
+            const maxBin = Math.floor(MAX_FREQ / freqPerBin);
+
+            let sumSq = 0;
+            for (let i = 0; i < timeData.length; i++) {
+                const sample = (timeData[i] - 128) / 128;
+                sumSq += sample * sample;
+            }
+            const rms = Math.sqrt(sumSq / timeData.length);
+            const db = 20 * Math.log10(rms + 1e-5);
+
+            // 环境噪音检测（仅麦克风开启时显示）
+            if (isMicActive && noiseValue) {
+                const noiseDb = Math.max(0, db + 94); // 偏移到常见 SPL 标度
+                noiseValue.textContent = noiseDb.toFixed(1);
+                noiseValue.className = noiseDb < 50 ? 'quiet' : noiseDb < 75 ? 'moderate' : 'loud';
+            } else if (noiseValue) {
+                noiseValue.textContent = '--';
+                noiseValue.className = 'quiet';
+            }
+
+            let peakIndex = 0, peakValue = 0;
+            for (let i = 0; i < maxBin; i++) {
+                const energy = frequencyData[i];
+                if (energy > peakValue) {
+                    peakValue = energy;
+                    peakIndex = i;
+                }
+            }
+
+            // 使用积分模型计算RGB
+            const rRaw = calcModel(frequencyData,
+                channelParams.red.low / freqPerBin,
+                channelParams.red.mid / freqPerBin,
+                channelParams.red.high / freqPerBin,
+                channelParams.red.model) * channelParams.red.gain * brightnessGain;
+            const gRaw = calcModel(frequencyData,
+                channelParams.green.low / freqPerBin,
+                channelParams.green.mid / freqPerBin,
+                channelParams.green.high / freqPerBin,
+                channelParams.green.model) * channelParams.green.gain * brightnessGain;
+            const bRaw = calcModel(frequencyData,
+                channelParams.blue.low / freqPerBin,
+                channelParams.blue.mid / freqPerBin,
+                channelParams.blue.high / freqPerBin,
+                channelParams.blue.model) * channelParams.blue.gain * brightnessGain;
+
+            // 仅做255上限截断，不再其他处理
+            let r = Math.min(255, Math.max(0, rRaw));
+            let g = Math.min(255, Math.max(0, gRaw));
+            let b = Math.min(255, Math.max(0, bRaw));
+
+            r = lastR * smoothFactor + r * (1 - smoothFactor);
+            g = lastG * smoothFactor + g * (1 - smoothFactor);
+            b = lastB * smoothFactor + b * (1 - smoothFactor);
+            lastR = r; lastG = g; lastB = b;
+
+            const rInt = Math.round(r);
+            const gInt = Math.round(g);
+            const bInt = Math.round(b);
+            const peakFreq = Math.round(peakIndex * freqPerBin);
+
+            ringHead = (ringHead + 1) % RING_COUNT;
+            ringHistory[ringHead] = { r: rInt, g: gInt, b: bInt };
+
+            drawRings();
+
+            innerCore.style.background = `rgb(${rInt}, ${gInt}, ${bInt})`;
+            innerCore.style.boxShadow = `
+                0 0 50px 20px rgba(${rInt}, ${gInt}, ${bInt}, 0.6),
+                0 0 100px 40px rgba(${rInt}, ${gInt}, ${bInt}, 0.25)
+            `;
+
+            rValue.textContent = rInt;
+            gValue.textContent = gInt;
+            bValue.textContent = bInt;
+            dbValue.textContent = db.toFixed(1);
+            freqValue.textContent = peakFreq;
+
+            if (!isMicActive && !isDisplayActive && audio.duration && !isDraggingProgress) {
+                const percent = (audio.currentTime / audio.duration) * 100;
+                progressFill.style.width = percent + '%';
+                progressHandle.style.left = percent + '%';
+                currentTimeEl.textContent = formatTime(audio.currentTime);
+            }
+
+            drawSpectrum(maxBin, freqPerBin);
+
+            // 频率条显示各通道原始积分值（未加平滑前）
+            const rBar = calcModel(frequencyData,
+                channelParams.red.low / freqPerBin,
+                channelParams.red.mid / freqPerBin,
+                channelParams.red.high / freqPerBin,
+                channelParams.red.model) * channelParams.red.gain * brightnessGain;
+            const gBar = calcModel(frequencyData,
+                channelParams.green.low / freqPerBin,
+                channelParams.green.mid / freqPerBin,
+                channelParams.green.high / freqPerBin,
+                channelParams.green.model) * channelParams.green.gain * brightnessGain;
+            const bBar = calcModel(frequencyData,
+                channelParams.blue.low / freqPerBin,
+                channelParams.blue.mid / freqPerBin,
+                channelParams.blue.high / freqPerBin,
+                channelParams.blue.model) * channelParams.blue.gain * brightnessGain;
+
+            barR.style.width = `${Math.min(100, rBar / 255 * 100)}%`;
+            barG.style.width = `${Math.min(100, gBar / 255 * 100)}%`;
+            barB.style.width = `${Math.min(100, bBar / 255 * 100)}%`;
+        }
+
+        function formatTime(sec) {
+            if (isNaN(sec)) return '00:00';
+            const m = Math.floor(sec / 60);
+            const s = Math.floor(sec % 60);
+            return `${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+        }
+
+        function resetLight() {
+            for (let i = 0; i < RING_COUNT; i++) {
+                ringHistory[i] = { r: 0, g: 0, b: 0 };
+            }
+            ringHead = 0;
+            drawRings();
+
+            innerCore.style.background = 'rgb(0,0,0)';
+            innerCore.style.boxShadow = 'none';
+
+            lastR = lastG = lastB = 0;
+            rValue.textContent = 0;
+            gValue.textContent = 0;
+            bValue.textContent = 0;
+            dbValue.textContent = '0.0';
+            freqValue.textContent = 0;
+            barB.style.width = '0%';
+            barG.style.width = '0%';
+            barR.style.width = '0%';
+            progressFill.style.width = '0%';
+            progressHandle.style.left = '0%';
+            if (noiseValue) {
+                noiseValue.textContent = '--';
+                noiseValue.className = 'quiet';
+            }
+
+            if (ctx) {
+                const w = spectrumCanvas.clientWidth;
+                const h = spectrumCanvas.clientHeight;
+                ctx.clearRect(0, 0, w, h);
+            }
+        }
+
+        initRingCanvas();
+        initCanvas();
+        initTripleSliders();
+        bindControls();
+        updateParamsUI();
+        updateBarLabels();
+        loadParams();
+    </script>
+</body>
+</html>

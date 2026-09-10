@@ -1,0 +1,20 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+LED_link
+Screen_link
+
+# 硬件工程为指向独立仓库（TOTOOMusicWaterfall_hardware_screen）的本地链接，不属于软件仓库
+/hardware/

@@ -1,0 +1,507 @@
+package com.example.myapplication.controller;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.bluetooth.BluetoothAdapter;
+import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
+import android.content.Context;
+import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.os.Build;
+import android.os.Handler;
+import android.os.Looper;
+import android.util.Log;
+
+import java.io.BufferedInputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
+import java.util.Set;
+import java.util.UUID;
+
+public class BluetoothController {
+
+    private static final String TAG = "BluetoothController";
+    private static final String BLUETOOTH_NAME = "TOTOOMusicWaterfall";
+    private static final UUID SPP_UUID = UUID.fromString("00001101-0000-1000-8000-00805F9B34FB");
+
+    // 与硬件约定的音频频段数：16 × 100Hz（对应屏幕 FFT 柱状图）
+    public static final int AUDIO_BAND_COUNT = 16;
+    private static final char[] HEX_CHARS = "0123456789ABCDEF".toCharArray();
+
+    private Context context;
+    private BluetoothAdapter bluetoothAdapter;
+    private BluetoothSocket bluetoothSocket;
+    private OutputStream outputStream;
+    private InputStream inputStream;
+    private boolean isConnected = false;
+    private OnBluetoothStatusListener listener;
+    private long lastSendTime = 0;
+    private static final long SEND_INTERVAL_MS = 50;
+
+    // 接收线程控制：cleanup 前置 false，使 read() 因 socket 关闭退出时不误判为意外断开
+    private volatile boolean receiving = false;
+    private Thread receiveThread;
+
+    // 固件上行二进制 PCM 帧同步头
+    private static final int PCM_FRAME_MAGIC0 = 0xA5;
+    private static final int PCM_FRAME_MAGIC1 = 0x5A;
+    private static final int PCM_PAYLOAD_MAX = 2048;
+
+    // 是否允许自动连接/自动重连：唯一真源，只由用户的手动连接/手动断开动作翻转
+    private volatile boolean shouldAutoConnect = true;
+    // 是否有连接尝试正在进行（防止重试任务与手动触发并发）
+    private volatile boolean isConnecting = false;
+
+    private static final long AUTO_RECONNECT_DELAY_MS = 3000;
+    private final Handler reconnectHandler = new Handler(Looper.getMainLooper());
+    private final Runnable reconnectRunnable = this::connectToDevice;
+
+    private boolean hasBluetoothConnectPermission() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            return context.checkSelfPermission(Manifest.permission.BLUETOOTH_CONNECT) == PackageManager.PERMISSION_GRANTED;
+        }
+        return true;
+    }
+
+    public interface OnBluetoothStatusListener {
+        void onBluetoothConnected();
+        void onBluetoothDisconnected();
+        void onBluetoothError(String message);
+        // 固件周期上报的温湿度
+        void onSensorData(double temp, double humid);
+        // 固件上行的一帧麦克风 PCM（16kHz/16bit/mono），在蓝牙接收线程回调
+        void onMicPcm(byte[] pcm, int len);
+    }
+
+    public BluetoothController(Context context, OnBluetoothStatusListener listener) {
+        this.context = context;
+        this.listener = listener;
+        this.bluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+    }
+
+    public boolean isBluetoothAvailable() {
+        return bluetoothAdapter != null;
+    }
+
+    public boolean isBluetoothEnabled() {
+        return bluetoothAdapter != null && bluetoothAdapter.isEnabled();
+    }
+
+    public void requestEnableBluetooth(int requestCode) {
+        if (bluetoothAdapter != null && !bluetoothAdapter.isEnabled()) {
+            Intent enableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+            ((android.app.Activity) context).startActivityForResult(enableIntent, requestCode);
+        }
+    }
+
+    public boolean isConnected() {
+        return isConnected;
+    }
+
+    public boolean isAutoConnectEnabled() {
+        return shouldAutoConnect;
+    }
+
+    @SuppressLint("MissingPermission")
+    public void connectToDevice() {
+        if (isConnected || isConnecting) {
+            return;
+        }
+
+        if (!isBluetoothAvailable()) {
+            notifyError("设备不支持蓝牙");
+            return;
+        }
+
+        if (!isBluetoothEnabled()) {
+            notifyError("蓝牙未开启");
+            // 蓝牙开关/权限就绪后由页面回调主动触发，这里不做无意义轮询
+            return;
+        }
+
+        if (!hasBluetoothConnectPermission()) {
+            notifyError("缺少蓝牙连接权限");
+            return;
+        }
+
+        isConnecting = true;
+        new Thread(() -> {
+            try {
+                BluetoothDevice device = findDeviceByName(BLUETOOTH_NAME);
+                
+                if (device == null) {
+                    isConnecting = false;
+                    notifyError("未找到设备: " + BLUETOOTH_NAME);
+                    scheduleAutoReconnect();
+                    return;
+                }
+
+                bluetoothSocket = device.createRfcommSocketToServiceRecord(SPP_UUID);
+                
+                bluetoothAdapter.cancelDiscovery();
+                
+                bluetoothSocket.connect();
+                outputStream = bluetoothSocket.getOutputStream();
+                inputStream = bluetoothSocket.getInputStream();
+                isConnected = true;
+                isConnecting = false;
+                cancelAutoReconnect();
+
+                Log.d(TAG, "蓝牙连接成功: " + device.getName());
+                notifyConnected();
+                startReceiveLoop();
+
+                startConnectionWatchdog();
+                
+            } catch (IOException e) {
+                isConnecting = false;
+                Log.e(TAG, "蓝牙连接失败", e);
+                notifyError("连接失败: " + e.getMessage());
+                cleanupSocket();
+                scheduleAutoReconnect();
+            }
+        }).start();
+    }
+
+    /**
+     * 用户手动点击“连接”：恢复自动连接并立即尝试连接
+     */
+    public void manualConnect() {
+        shouldAutoConnect = true;
+        cancelAutoReconnect();
+        connectToDevice();
+    }
+
+    /**
+     * 用户手动点击“连接”但蓝牙尚未开启：仅记录用户意图，
+     * 等系统“开启蓝牙”弹窗同意后续接连接
+     */
+    public void markManualConnectRequested() {
+        shouldAutoConnect = true;
+        cancelAutoReconnect();
+    }
+
+    /**
+     * 用户手动点击“断开连接”：关闭连接且不再自动重连，直到用户再次手动连接
+     */
+    public void manualDisconnect() {
+        shouldAutoConnect = false;
+        cancelAutoReconnect();
+        disconnect();
+    }
+
+    private void scheduleAutoReconnect() {
+        if (!shouldAutoConnect || isConnected || isConnecting) {
+            return;
+        }
+        if (!isBluetoothAvailable() || !isBluetoothEnabled() || !hasBluetoothConnectPermission()) {
+            return;
+        }
+        reconnectHandler.removeCallbacks(reconnectRunnable);
+        reconnectHandler.postDelayed(reconnectRunnable, AUTO_RECONNECT_DELAY_MS);
+        Log.d(TAG, "将在 " + AUTO_RECONNECT_DELAY_MS + "ms 后自动重连");
+    }
+
+    private void cancelAutoReconnect() {
+        reconnectHandler.removeCallbacks(reconnectRunnable);
+    }
+
+    @SuppressLint("MissingPermission")
+    private BluetoothDevice findDeviceByName(String name) {
+        if (!hasBluetoothConnectPermission()) {
+            return null;
+        }
+        
+        Set<BluetoothDevice> pairedDevices = bluetoothAdapter.getBondedDevices();
+        
+        for (BluetoothDevice device : pairedDevices) {
+            if (name.equals(device.getName())) {
+                return device;
+            }
+        }
+        
+        return null;
+    }
+
+    public void disconnect() {
+        cleanupSocket();
+        cancelAutoReconnect();
+        notifyDisconnected();
+        Log.d(TAG, "蓝牙已断开");
+    }
+
+    /**
+     * 意外断开（链路中断/发送失败/看门狗检测）：清理后按 shouldAutoConnect 自动重连
+     */
+    private void onUnexpectedDisconnect() {
+        boolean wasConnected = isConnected;
+        cleanupSocket();
+        if (wasConnected) {
+            notifyDisconnected();
+        }
+        scheduleAutoReconnect();
+    }
+
+    private void cleanupSocket() {
+        isConnected = false;
+        isConnecting = false;
+        // 先标记主动关闭，接收线程退出时不再触发意外断开重连
+        receiving = false;
+
+        if (outputStream != null) {
+            try {
+                outputStream.close();
+            } catch (IOException e) {
+                Log.e(TAG, "关闭输出流失败", e);
+            }
+            outputStream = null;
+        }
+
+        if (inputStream != null) {
+            try {
+                inputStream.close();
+            } catch (IOException e) {
+                Log.e(TAG, "关闭输入流失败", e);
+            }
+            inputStream = null;
+        }
+
+        if (bluetoothSocket != null) {
+            try {
+                bluetoothSocket.close();
+            } catch (IOException e) {
+                Log.e(TAG, "关闭蓝牙socket失败", e);
+            }
+            bluetoothSocket = null;
+        }
+    }
+
+    /**
+     * 发送一帧音频数据：当前颜色 + 16 个频段电平(0~255)。
+     * 帧格式：'$' + RRGGBB + 32个十六进制字符 + '\n'，共 40 字节。
+     */
+    public void sendAudioFrame(int r, int g, int b, byte[] levels) {
+        if (!isConnected || outputStream == null) {
+            return;
+        }
+
+        long now = System.currentTimeMillis();
+        if (now - lastSendTime < SEND_INTERVAL_MS) {
+            return;
+        }
+        lastSendTime = now;
+
+        int bandCount = Math.min(AUDIO_BAND_COUNT, levels == null ? 0 : levels.length);
+        StringBuilder sb = new StringBuilder(1 + 6 + AUDIO_BAND_COUNT * 2 + 1);
+        sb.append('$');
+        appendHex(sb, Math.max(0, Math.min(255, r)));
+        appendHex(sb, Math.max(0, Math.min(255, g)));
+        appendHex(sb, Math.max(0, Math.min(255, b)));
+        for (int i = 0; i < bandCount; i++) {
+            appendHex(sb, levels[i] & 0xFF);
+        }
+        // 电平数组不足约定长度时补 0，保证帧长固定
+        for (int i = bandCount; i < AUDIO_BAND_COUNT; i++) {
+            sb.append("00");
+        }
+        sb.append('\n');
+
+        try {
+            outputStream.write(sb.toString().getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            Log.e(TAG, "发送数据失败", e);
+            onUnexpectedDisconnect();
+        }
+    }
+
+    private static void appendHex(StringBuilder sb, int value) {
+        sb.append(HEX_CHARS[(value >> 4) & 0x0F]);
+        sb.append(HEX_CHARS[value & 0x0F]);
+    }
+
+    /**
+     * 通知固件开始/停止上行硬件麦克风 PCM（M1/M0 命令）
+     */
+    public void setMicMonitoring(boolean enable) {
+        if (!isConnected || outputStream == null) {
+            return;
+        }
+        try {
+            outputStream.write(enable ? "M1\n".getBytes() : "M0\n".getBytes());
+            outputStream.flush();
+        } catch (IOException e) {
+            Log.e(TAG, "发送麦克风监听命令失败", e);
+            onUnexpectedDisconnect();
+        }
+    }
+
+    /**
+     * 固件上行接收线程：同一 SPP 字节流中混合了
+     *  - 文本帧（'S' 温湿度、'CONNECTED' 等），以 '\n' 结束
+     *  - 二进制 PCM 帧：A5 5A seq lenH lenL payload xor8
+     */
+    private void startReceiveLoop() {
+        receiving = true;
+        receiveThread = new Thread(() -> {
+            InputStream localIn = new BufferedInputStream(inputStream, 4096);
+            StringBuilder line = new StringBuilder(64);
+            byte[] hdr = new byte[3];
+            byte[] payload = new byte[PCM_PAYLOAD_MAX];
+            int state = 0; // 0=文本 1=等第二魔数 2=收头部 3=收载荷 4=收校验
+            int hdrIdx = 0;
+            int payloadLen = 0;
+            int payloadIdx = 0;
+            int xor = 0;
+
+            try {
+                int b;
+                while (receiving && (b = localIn.read()) >= 0) {
+                    switch (state) {
+                        case 0:
+                            if (b == PCM_FRAME_MAGIC0) {
+                                state = 1;
+                            } else if (b == '\n') {
+                                if (line.length() > 0) {
+                                    handleUplinkText(line.toString());
+                                }
+                                line.setLength(0);
+                            } else if (b != '\r' && line.length() < 64) {
+                                line.append((char) b);
+                            }
+                            break;
+                        case 1:
+                            if (b == PCM_FRAME_MAGIC1) {
+                                state = 2;
+                                hdrIdx = 0;
+                            } else {
+                                state = 0;
+                            }
+                            break;
+                        case 2:
+                            hdr[hdrIdx++] = (byte) b;
+                            if (hdrIdx == hdr.length) {
+                                payloadLen = ((hdr[1] & 0xFF) << 8) | (hdr[2] & 0xFF);
+                                xor = (hdr[0] & 0xFF) ^ (hdr[1] & 0xFF) ^ (hdr[2] & 0xFF);
+                                if (payloadLen <= 0 || payloadLen > payload.length) {
+                                    Log.w(TAG, "PCM帧长度异常: " + payloadLen);
+                                    state = 0;
+                                } else {
+                                    state = 3;
+                                    payloadIdx = 0;
+                                }
+                            }
+                            break;
+                        case 3:
+                            payload[payloadIdx++] = (byte) b;
+                            xor ^= (b & 0xFF);
+                            if (payloadIdx == payloadLen) {
+                                state = 4;
+                            }
+                            break;
+                        case 4:
+                            state = 0;
+                            if ((b & 0xFF) == (xor & 0xFF)) {
+                                byte[] copy = new byte[payloadLen];
+                                System.arraycopy(payload, 0, copy, 0, payloadLen);
+                                notifyMicPcm(copy);
+                            }
+                            break;
+                        default:
+                            state = 0;
+                            break;
+                    }
+                }
+            } catch (IOException e) {
+                if (receiving) {
+                    Log.e(TAG, "蓝牙接收线程异常", e);
+                }
+            }
+
+            if (receiving) {
+                // 非主动关闭导致的接收结束，视为链路断开
+                onUnexpectedDisconnect();
+            }
+        }, "bt-rx");
+        receiveThread.start();
+    }
+
+    private void handleUplinkText(String text) {
+        // 温湿度帧：S<temp>,<humid>
+        if (text.startsWith("S")) {
+            String body = text.substring(1);
+            int comma = body.indexOf(',');
+            if (comma > 0) {
+                try {
+                    double temp = Double.parseDouble(body.substring(0, comma));
+                    double humid = Double.parseDouble(body.substring(comma + 1));
+                    notifySensor(temp, humid);
+                } catch (NumberFormatException e) {
+                    Log.w(TAG, "温湿度帧解析失败: " + text);
+                }
+            }
+        }
+        // "CONNECTED" 等其它文本忽略
+    }
+
+    private void notifySensor(double temp, double humid) {
+        if (listener != null) {
+            ((android.app.Activity) context).runOnUiThread(() ->
+                    listener.onSensorData(temp, humid));
+        }
+    }
+
+    private void notifyMicPcm(byte[] pcm) {
+        if (listener != null) {
+            // 直接在接收线程回调，接收方入队即可，避免线程切换造成延迟
+            listener.onMicPcm(pcm, pcm.length);
+        }
+    }
+
+    private void startConnectionWatchdog() {
+        new Thread(() -> {
+            while (isConnected && bluetoothSocket != null) {
+                try {
+                    Thread.sleep(1000);
+                    if (!bluetoothSocket.isConnected()) {
+                        onUnexpectedDisconnect();
+                        break;
+                    }
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    break;
+                } catch (Exception e) {
+                    Log.e(TAG, "连接检测失败", e);
+                    onUnexpectedDisconnect();
+                    break;
+                }
+            }
+        }).start();
+    }
+
+    private void notifyConnected() {
+        if (listener != null) {
+            ((android.app.Activity) context).runOnUiThread(() -> {
+                listener.onBluetoothConnected();
+            });
+        }
+    }
+
+    private void notifyDisconnected() {
+        if (listener != null) {
+            ((android.app.Activity) context).runOnUiThread(() -> {
+                listener.onBluetoothDisconnected();
+            });
+        }
+    }
+
+    private void notifyError(String message) {
+        if (listener != null) {
+            ((android.app.Activity) context).runOnUiThread(() -> {
+                listener.onBluetoothError(message);
+            });
+        }
+    }
+}

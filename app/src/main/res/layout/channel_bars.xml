@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:weightSum="3"
+    android:layout_marginBottom="25dp">
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvBarLabelB"
+            android:text="@string/label_blue_channel"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/bg_track">
+
+            <View
+                android:id="@+id/vBarB"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/primary_blue"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvBarLabelG"
+            android:text="@string/label_green_channel"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/bg_track">
+
+            <View
+                android:id="@+id/vBarG"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/primary_green"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:id="@+id/tvBarLabelR"
+            android:text="@string/label_red_channel"
+            android:textColor="@color/text_hint"
+            android:textSize="12sp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"/>
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:background="@color/bg_track">
+
+            <View
+                android:id="@+id/vBarR"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:background="@color/primary_red"/>
+
+        </FrameLayout>
+
+    </LinearLayout>
+
+</LinearLayout>
