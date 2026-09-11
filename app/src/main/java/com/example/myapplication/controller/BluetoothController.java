@@ -326,14 +326,91 @@ public class BluetoothController {
      * 通知固件开始/停止上行硬件麦克风 PCM（M1/M0 命令）
      */
     public void setMicMonitoring(boolean enable) {
+        writeTextFrame(enable ? "M1\n" : "M0\n");
+    }
+
+    // 固件文字位图帧（歌名 A5 5B / 歌词 A5 5C）参数上限，需与固件 bluetooth.cpp 一致
+    private static final int TITLE_FRAME_MAGIC0 = 0xA5;
+    private static final int TITLE_MAGIC_TITLE = 0x5B;
+    private static final int TITLE_MAGIC_LYRIC = 0x5C;
+    private static final int TITLE_MAX_W = 512;
+    private static final int TITLE_MAX_H = 24;
+
+    /** 下发当前歌名 1bpp 位图（width=0/mask=null 表示清除）。 */
+    public void sendTitleMask(byte[] mask, int width, int height) {
+        sendTextBitmap(TITLE_MAGIC_TITLE, mask, width, height);
+    }
+
+    /** 下发当前歌词行 1bpp 位图（width=0/mask=null 表示清除），仅歌词文本变化时由上层调用。 */
+    public void sendLyricMask(byte[] mask, int width, int height) {
+        sendTextBitmap(TITLE_MAGIC_LYRIC, mask, width, height);
+    }
+
+    /**
+     * 下发一行文字的 1bpp 位图（App 用系统字体渲染，天然支持中文）。
+     * mask 行主序、每行 (w+7)/8 字节、MSB 对应最左像素；
+     * 帧格式：A5 magic1 wH wL H payload xor8。
+     */
+    private void sendTextBitmap(int magic1, byte[] mask, int width, int height) {
+        if (!isConnected || outputStream == null) {
+            return;
+        }
+        if (width < 0 || width > TITLE_MAX_W || height <= 0 || height > TITLE_MAX_H) {
+            Log.w(TAG, "歌名位图参数非法 w=" + width + " h=" + height);
+            return;
+        }
+        int stride = (width + 7) / 8;
+        int payload = stride * height;
+        if (mask != null && mask.length < payload) {
+            Log.w(TAG, "歌名位图数据不足: " + mask.length + " < " + payload);
+            return;
+        }
+
+        byte[] frame = new byte[5 + payload + 1];
+        frame[0] = (byte) TITLE_FRAME_MAGIC0;
+        frame[1] = (byte) magic1;
+        frame[2] = (byte) ((width >> 8) & 0xFF);
+        frame[3] = (byte) (width & 0xFF);
+        frame[4] = (byte) height;
+        if (mask != null) {
+            System.arraycopy(mask, 0, frame, 5, payload);
+        }
+        int xor = 0;
+        for (int i = 0; i < 5 + payload; i++) {
+            xor ^= frame[i] & 0xFF;
+        }
+        frame[frame.length - 1] = (byte) xor;
+
+        try {
+            // 一帧最多 ~1.3KB，一次 write 发出，固件按状态机逐字节重组
+            outputStream.write(frame);
+            outputStream.flush();
+        } catch (IOException e) {
+            Log.e(TAG, "发送歌名位图失败", e);
+            onUnexpectedDisconnect();
+        }
+    }
+
+    /**
+     * 下发播放进度（P 帧，单位秒），总时长 0 表示清除屏幕进度。
+     */
+    public void sendMediaProgress(int positionSec, int durationSec) {
+        writeTextFrame("P" + positionSec + "," + durationSec + "\n");
+    }
+
+    /**
+     * 文本命令帧统一发送出口：失败按意外断开处理并触发自动重连。
+     * 与音频帧不同，这类帧不做 50ms 节流（歌名/进度变化频率很低）。
+     */
+    private void writeTextFrame(String frame) {
         if (!isConnected || outputStream == null) {
             return;
         }
         try {
-            outputStream.write(enable ? "M1\n".getBytes() : "M0\n".getBytes());
+            outputStream.write(frame.getBytes());
             outputStream.flush();
         } catch (IOException e) {
-            Log.e(TAG, "发送麦克风监听命令失败", e);
+            Log.e(TAG, "发送文本帧失败: " + frame, e);
             onUnexpectedDisconnect();
         }
     }

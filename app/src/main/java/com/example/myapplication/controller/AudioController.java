@@ -46,6 +46,7 @@ public class AudioController {
 
     private ActivityResultLauncher<Intent> filePickerLauncher;
     private Uri currentAudioUri = null;
+    private String localFileName = null;
     private boolean isPlaying = false;
     private boolean isMicActive = false;
 
@@ -83,6 +84,7 @@ public class AudioController {
                             if (uri != null) {
                                 currentAudioUri = uri;
                                 String fileName = getFileNameFromUri(uri);
+                                localFileName = fileName;
                                 if (tvFileName != null) {
                                     tvFileName.setText(fileName);
                                 }
@@ -354,6 +356,17 @@ public class AudioController {
         int minutes = seconds / 60;
         seconds = seconds % 60;
         return String.format("%02d:%02d", minutes, seconds);
+    }
+
+    /**
+     * 当前选中本地音频的显示名（去掉扩展名），未选文件时返回 null
+     */
+    public String getLocalTitle() {
+        if (localFileName == null) {
+            return null;
+        }
+        int dot = localFileName.lastIndexOf('.');
+        return dot > 0 ? localFileName.substring(0, dot) : localFileName;
     }
 
     public void startProgressUpdates() {

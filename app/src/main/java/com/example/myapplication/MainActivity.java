@@ -19,6 +19,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.myapplication.controller.AudioController;
 import com.example.myapplication.controller.BluetoothController;
 import com.example.myapplication.controller.HeaderController;
+import com.example.myapplication.controller.MediaInfoController;
 import com.example.myapplication.controller.ParamsController;
 import com.example.myapplication.controller.RGBController;
 import com.example.myapplication.service.SystemAudioCaptureService;
@@ -47,6 +48,7 @@ public class MainActivity extends AppCompatActivity implements AudioAnalyzer.OnA
     private RGBController rgbController;
     private ParamsController paramsController;
     private BluetoothController bluetoothController;
+    private MediaInfoController mediaInfoController;
     private TextView tvSensor;
 
     @Override
@@ -94,6 +96,8 @@ public class MainActivity extends AppCompatActivity implements AudioAnalyzer.OnA
         audioController = new AudioController(this, audioAnalyzer, paramsManager, headerController, bluetoothController);
         rgbController = new RGBController(this, audioAnalyzer, paramsManager, bluetoothController);
         paramsController = new ParamsController(this, paramsManager);
+        mediaInfoController = new MediaInfoController(this, bluetoothController,
+                audioAnalyzer, audioController, headerController);
     }
 
     private void checkPermissions() {
@@ -222,7 +226,12 @@ public class MainActivity extends AppCompatActivity implements AudioAnalyzer.OnA
                 
                 audioAnalyzer.stopAll();
                 audioAnalyzer.isSystemAudioActive = true;
-                
+
+                // 捕获后台音乐时引导一次通知使用权授权，用于读取其他播放器的歌名/进度
+                if (mediaInfoController != null) {
+                    mediaInfoController.promptNotificationAccessIfNeeded();
+                }
+
                 headerController.setStatus("系统音频捕获已启动");
             } else {
                 headerController.setStatus("系统音频捕获权限被拒绝", "error");
@@ -285,6 +294,12 @@ public class MainActivity extends AppCompatActivity implements AudioAnalyzer.OnA
     public void onBluetoothConnected() {
         headerController.setStatus("蓝牙连接成功", "success");
         audioController.updateBluetoothButton(true);
+        if (mediaInfoController != null) {
+            // 开始周期下发歌名位图/进度（后台会话或本地文件）
+            mediaInfoController.start();
+            // 想显示其他音乐 App 的歌名/进度必须有通知使用权，连接后引导一次
+            mediaInfoController.promptNotificationAccessIfNeeded();
+        }
         if (tvSensor != null) {
             tvSensor.setText("硬件温湿度：等待数据...");
         }
@@ -294,6 +309,9 @@ public class MainActivity extends AppCompatActivity implements AudioAnalyzer.OnA
     public void onBluetoothDisconnected() {
         audioController.updateBluetoothButton(false);
         audioController.stopHwMicMonitoring();
+        if (mediaInfoController != null) {
+            mediaInfoController.stop();
+        }
         if (tvSensor != null) {
             tvSensor.setText("硬件温湿度：未连接");
         }
@@ -332,6 +350,9 @@ public class MainActivity extends AppCompatActivity implements AudioAnalyzer.OnA
         if (audioController != null) {
             audioController.stopHwMicMonitoring();
             audioController.release();
+        }
+        if (mediaInfoController != null) {
+            mediaInfoController.stop();
         }
         if (bluetoothController != null) {
             bluetoothController.disconnect();
