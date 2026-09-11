@@ -77,6 +77,7 @@ public class MediaInfoController {
     public void stop() {
         running = false;
         handler.removeCallbacks(tickRunnable);
+        bluetoothController.cancelLyricStream();
         // 下次连接后强制全量重发
         sentTitle = null;
         sentLyric = null;
@@ -101,7 +102,8 @@ public class MediaInfoController {
                 title = cleanText(external.title);
                 String lyricRaw = MediaSessionListener.getLyric(external.packageName, external.title);
                 lyric = lyricRaw != null ? cleanText(lyricRaw) : "";
-                positionSec = (int) (external.positionMs / 1000);
+                // 进度在读取时按播放速度实时外推，播放器不高频回调也能每秒跳动
+                positionSec = (int) (external.getPositionMs() / 1000);
                 durationSec = (int) (external.durationMs / 1000);
             } else if (audioAnalyzer.getDuration() > 0) {
                 // 本 App 本地音频（含暂停态，暂停时进度停在最后位置），无歌词来源
@@ -116,8 +118,14 @@ public class MediaInfoController {
                 sentTitle = title;
             }
             if (!lyric.equals(sentLyric)) {
-                bluetoothController.sendLyricMask(renderMask(lyric, LYRIC_FIT_W),
-                        lastMaskWidth, TITLE_H);
+                byte[] mask = renderMask(lyric, LYRIC_FIT_W);
+                if (mask != null) {
+                    bluetoothController.startLyricStream(mask, lastMaskWidth, TITLE_H);
+                } else {
+                    // 空歌词：发清除帧并中断旧流
+                    bluetoothController.cancelLyricStream();
+                    bluetoothController.startLyricStream(null, 0, 0);
+                }
                 sentLyric = lyric;
             }
             String progress = positionSec + "," + durationSec;

@@ -34,6 +34,13 @@ public class BluetoothController {
     private BluetoothAdapter bluetoothAdapter;
     private BluetoothSocket bluetoothSocket;
     private OutputStream outputStream;
+    /**
+     * 写流锁：音频 '$' 帧（音频线程 ~20fps）与位图/文本帧（主线程，位图帧最长 1.3KB）
+     * 共用一条 SPP 字节流。若不加锁，长位图帧传输期间会被 '$' 帧字节插入，固件状态机
+     * 把它们当载荷吃掉导致 XOR 校验失败、整帧丢弃（表现为长歌词不显示）。
+     * 所有 write+flush 必须持此锁，保证“一帧”在字节流中原子。
+     */
+    private final Object writeLock = new Object();
     private InputStream inputStream;
     private boolean isConnected = false;
     private OnBluetoothStatusListener listener;
@@ -249,14 +256,18 @@ public class BluetoothController {
         isConnecting = false;
         // 先标记主动关闭，接收线程退出时不再触发意外断开重连
         receiving = false;
+        // 中断歌词分块流线程
+        cancelLyricStream();
 
-        if (outputStream != null) {
-            try {
-                outputStream.close();
-            } catch (IOException e) {
-                Log.e(TAG, "关闭输出流失败", e);
+        synchronized (writeLock) {
+            if (outputStream != null) {
+                try {
+                    outputStream.close();
+                } catch (IOException e) {
+                    Log.e(TAG, "关闭输出流失败", e);
+                }
+                outputStream = null;
             }
-            outputStream = null;
         }
 
         if (inputStream != null) {
@@ -308,9 +319,15 @@ public class BluetoothController {
         }
         sb.append('\n');
 
+        byte[] audioBytes = sb.toString().getBytes();
         try {
-            outputStream.write(sb.toString().getBytes());
-            outputStream.flush();
+            synchronized (writeLock) {
+                if (outputStream == null) {
+                    return;
+                }
+                outputStream.write(audioBytes);
+                outputStream.flush();
+            }
         } catch (IOException e) {
             Log.e(TAG, "发送数据失败", e);
             onUnexpectedDisconnect();
@@ -343,7 +360,115 @@ public class BluetoothController {
 
     /** 下发当前歌词行 1bpp 位图（width=0/mask=null 表示清除），仅歌词文本变化时由上层调用。 */
     public void sendLyricMask(byte[] mask, int width, int height) {
-        sendTextBitmap(TITLE_MAGIC_LYRIC, mask, width, height);
+        // 歌词改用分块流式发送，见 startLyricStream / cancelLyricStream
+        startLyricStream(mask, width, height);
+    }
+
+    // ---- 歌词分块流式发送 ----
+    // App 把 1bpp mask 切成 200B 块，每 250ms 发一块；
+    // 发完后从 reset 帧开始循环；歌词变化时调 cancelLyricStream 中断旧流、发新流。
+    // 固件收到 reset 清空缓冲并 ver++，收到 data 块写入 offset 处并标 dirty 触发重绘。
+    private volatile int lyricStreamId = 0;
+    private Thread lyricThread = null;
+    private static final int LYRIC_CHUNK_SIZE = 200;
+    private static final int LYRIC_CHUNK_INTERVAL_MS = 250;
+
+    public void startLyricStream(byte[] mask, int width, int height) {
+        final int myId = ++lyricStreamId;
+        if (lyricThread != null) {
+            lyricThread.interrupt();
+        }
+        if (!isConnected || outputStream == null) {
+            return;
+        }
+        if (mask == null || width == 0) {
+            sendLyricClearFrame();
+            return;
+        }
+
+        final byte[] myMask = mask;
+        final int myWidth = width;
+        final int myHeight = height;
+        final int totalBytes = ((width + 7) / 8) * height;
+
+        lyricThread = new Thread(() -> {
+            while (myId == lyricStreamId && isConnected) {
+                // reset 帧：A5 5C 00 wH wL H xor8
+                sendLyricResetFrame(myWidth, myHeight);
+                // 分块发 data
+                for (int off = 0; off < totalBytes; off += LYRIC_CHUNK_SIZE) {
+                    if (myId != lyricStreamId || !isConnected) return;
+                    int len = Math.min(LYRIC_CHUNK_SIZE, totalBytes - off);
+                    sendLyricDataFrame(off, myMask, len);
+                    try {
+                        Thread.sleep(LYRIC_CHUNK_INTERVAL_MS);
+                    } catch (InterruptedException e) {
+                        return;
+                    }
+                }
+            }
+        }, "LyricStream");
+        lyricThread.setDaemon(true);
+        lyricThread.start();
+    }
+
+    public void cancelLyricStream() {
+        lyricStreamId++;
+        if (lyricThread != null) {
+            lyricThread.interrupt();
+            lyricThread = null;
+        }
+    }
+
+    private void sendLyricResetFrame(int width, int height) {
+        byte[] frame = new byte[7];
+        frame[0] = (byte) TITLE_FRAME_MAGIC0;
+        frame[1] = (byte) TITLE_MAGIC_LYRIC;
+        frame[2] = 0x00;
+        frame[3] = (byte) ((width >> 8) & 0xFF);
+        frame[4] = (byte) (width & 0xFF);
+        frame[5] = (byte) height;
+        int xor = 0;
+        for (int i = 0; i < 6; i++) xor ^= frame[i] & 0xFF;
+        frame[6] = (byte) xor;
+        writeFrameLocked(frame);
+    }
+
+    private void sendLyricDataFrame(int offset, byte[] mask, int len) {
+        byte[] frame = new byte[7 + len];
+        frame[0] = (byte) TITLE_FRAME_MAGIC0;
+        frame[1] = (byte) TITLE_MAGIC_LYRIC;
+        frame[2] = 0x01;
+        frame[3] = (byte) ((offset >> 8) & 0xFF);
+        frame[4] = (byte) (offset & 0xFF);
+        frame[5] = (byte) len;
+        System.arraycopy(mask, offset, frame, 6, len);
+        int xor = 0;
+        for (int i = 0; i < 6 + len; i++) xor ^= frame[i] & 0xFF;
+        frame[6 + len] = (byte) xor;
+        writeFrameLocked(frame);
+    }
+
+    private void sendLyricClearFrame() {
+        byte[] frame = new byte[4];
+        frame[0] = (byte) TITLE_FRAME_MAGIC0;
+        frame[1] = (byte) TITLE_MAGIC_LYRIC;
+        frame[2] = 0x02;
+        frame[3] = (byte) (TITLE_FRAME_MAGIC0 ^ TITLE_MAGIC_LYRIC ^ 0x02);
+        writeFrameLocked(frame);
+    }
+
+    private void writeFrameLocked(byte[] frame) {
+        synchronized (writeLock) {
+            if (outputStream == null) return;
+            try {
+                outputStream.write(frame);
+                outputStream.flush();
+            } catch (IOException e) {
+                Log.e(TAG, "Lyric frame write failed", e);
+                onUnexpectedDisconnect();
+            }
+        }
     }
 
     /**
@@ -382,11 +507,30 @@ public class BluetoothController {
         frame[frame.length - 1] = (byte) xor;
 
         try {
-            // 一帧最多 ~1.3KB，一次 write 发出，固件按状态机逐字节重组
-            outputStream.write(frame);
-            outputStream.flush();
+            // ESP32 SPP RX 环形缓冲仅 ~256 字节，长帧（歌词最长 ~450 字节）
+            // 必须分块写入，每块 ≤200 字节间隔 20ms，给固件 bluetooth_update()
+            // 时间排空缓冲。持锁保证整帧不被 20fps 音频帧插入。
+            synchronized (writeLock) {
+                if (outputStream == null) {
+                    return;
+                }
+                int chunkSize = 200;
+                for (int off = 0; off < frame.length; off += chunkSize) {
+                    int len = Math.min(chunkSize, frame.length - off);
+                    outputStream.write(frame, off, len);
+                    outputStream.flush();
+                    if (off + len < frame.length) {
+                        try {
+                            Thread.sleep(20);
+                        } catch (InterruptedException ie) {
+                            Thread.currentThread().interrupt();
+                            break;
+                        }
+                    }
+                }
+            }
         } catch (IOException e) {
-            Log.e(TAG, "发送歌名位图失败", e);
+            Log.e(TAG, "发送文字位图失败", e);
             onUnexpectedDisconnect();
         }
     }
@@ -406,9 +550,15 @@ public class BluetoothController {
         if (!isConnected || outputStream == null) {
             return;
         }
+        byte[] textBytes = frame.getBytes();
         try {
-            outputStream.write(frame.getBytes());
-            outputStream.flush();
+            synchronized (writeLock) {
+                if (outputStream == null) {
+                    return;
+                }
+                outputStream.write(textBytes);
+                outputStream.flush();
+            }
         } catch (IOException e) {
             Log.e(TAG, "发送文本帧失败: " + frame, e);
             onUnexpectedDisconnect();
