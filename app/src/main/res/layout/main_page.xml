@@ -1,92 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/bg_dark"
-    android:padding="16dp"
-    android:fillViewport="true">
+    android:background="@color/bg_dark">
 
+    <!-- 主内容区：顶部状态栏 + 页面容器 + 底部导航 -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <include layout="@layout/header_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <include layout="@layout/control_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <include layout="@layout/progress_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
+        <include layout="@layout/top_bar"/>
 
-        <LinearLayout
+        <!-- 页面容器：3 个页面堆叠，同一时间只显示一个 -->
+        <FrameLayout
+            android:id="@+id/pageContainer"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:layout_marginBottom="20dp">
+            android:layout_height="0dp"
+            android:layout_weight="1">
 
-            <include layout="@layout/ring_section"
-                android:layout_width="300dp"
-                android:layout_height="300dp"/>
+            <include layout="@layout/page_home"/>
+            <include layout="@layout/page_source"
+                android:visibility="gone"/>
+            <include layout="@layout/page_params"
+                android:visibility="gone"/>
 
-        </LinearLayout>
+        </FrameLayout>
 
-        <include layout="@layout/rgb_values"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <include layout="@layout/channel_bars"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <include layout="@layout/spectrum_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-        <include layout="@layout/params_section"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="项目开源地址"
-                android:textColor="@color/text_hint"
-                android:textSize="12sp"
-                android:layout_marginBottom="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="https://github.com/totooicu/TOTOOMusicWaterfall_software_android.git"
-                android:autoLink="web"
-                android:linksClickable="true"
-                android:gravity="center"
-                android:textColor="@color/text_secondary"
-                android:textSize="11sp"
-                android:padding="4dp"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="https://github.com/totooicu/TOTOOMusicWaterfall_hardware_screen.git"
-                android:autoLink="web"
-                android:linksClickable="true"
-                android:gravity="center"
-                android:textColor="@color/text_secondary"
-                android:textSize="11sp"
-                android:padding="4dp"/>
-
-        </LinearLayout>
+        <include layout="@layout/bottom_nav"/>
 
     </LinearLayout>
 
-</ScrollView>
+    <!-- 全屏切换按钮：悬浮在右上角，始终可见 -->
+    <Button
+        android:id="@+id/btnFullscreen"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|end"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:text="全屏"
+        android:textColor="@color/text_primary"
+        android:background="@color/primary_purple"
+        android:textSize="12sp"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="6dp"
+        android:minWidth="0dp"
+        android:minHeight="0dp"/>
+
+</FrameLayout>

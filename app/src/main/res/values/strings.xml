@@ -60,4 +60,11 @@
     <string name="hint_unsaved">有未保存修改</string>
 
     <string name="label_spectrum">频率-能量图 (v-d) · 横轴：频率(Hz) · 纵轴：能量幅值</string>
+
+    <!-- 页面导航 -->
+    <string name="tab_home">主页</string>
+    <string name="tab_source">播放源</string>
+    <string name="tab_params">参数设置</string>
+    <string name="btn_fullscreen">全屏</string>
+    <string name="btn_exit_fullscreen">退出全屏</string>
 </resources>
