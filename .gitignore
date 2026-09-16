@@ -3,5 +3,6 @@ frontend/dist/
 frontend/package-lock.json
 frontend/npminstall-debug.log
 backend/.env
+
 **/__pycache__/
 
